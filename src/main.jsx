@@ -1,317 +1,82 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
-  ArrowLeft,
-  ArrowRight,
-  BookOpen,
-  Building2,
-  Check,
-  ChevronRight,
-  CircleDollarSign,
-  ClipboardCheck,
-  Code2,
-  Expand,
-  FileText,
-  Landmark,
-  Layers3,
-  Lightbulb,
-  Menu,
-  Network,
-  PanelTop,
-  Presentation,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  Users,
-  X,
+  ArrowLeft, ArrowRight, BookOpen, Building2, Check, ChevronRight,
+  CircleDollarSign, Expand, FileText, GraduationCap, HandCoins,
+  Landmark, Layers3, Menu, MessageSquare, Network, PanelTop,
+  Presentation, ShieldCheck, Sparkles, UserRound, Users, X,
 } from 'lucide-react'
 import './styles.css'
 
-const A = `${import.meta.env.BASE_URL}assets/`
+const A = `${import.meta.env.BASE_URL}assets/v2/`
 
-const slides = [
-  {
-    id: 'welcome',
-    type: 'cover',
-    accent: 'blue',
-    kicker: 'DIGITAL BUSINESS · CO-OP ONBOARDING',
-    title: 'Welcome to Manafa',
-    subtitle: 'Understand the business. Learn the craft. Contribute to real work.',
-    meta: 'Business Analysis · UX/UI · Seven-month experience',
-  },
-  {
-    id: 'outcomes',
-    type: 'content',
-    kicker: 'YOUR ONBOARDING MAP',
-    title: 'Four things to understand before you begin',
-    subtitle: 'The presentation gives you the map. Your work will provide the depth.',
-    blocks: [
-      ['01', 'The company', 'Why Manafa exists, whom it serves, and how it has grown.'],
-      ['02', 'The business', 'How companies, funders, investors, products, and platforms connect.'],
-      ['03', 'The organization', 'Who you will work with and what each department contributes.'],
-      ['04', 'Your contribution', 'How BA and UX/UI turn needs into delivered outcomes.'],
-    ],
-  },
-  {
-    id: 'scale',
-    type: 'metrics',
-    kicker: 'MANAFA AT A GLANCE',
-    title: 'A Saudi fintech built for business growth',
-    subtitle: 'Manafa connects companies seeking financing with funders and investors through regulated digital experiences.',
-    metrics: [
-      ['SAR 3.2B+', 'Total financing'],
-      ['200K+', 'Users'],
-      ['190+', 'Team members'],
-      ['12+', 'Partnerships'],
-    ],
-    footnote: 'Public company figures — verify on manafa.sa before each cohort.',
-    sources: [
-      ['Manafa — About', 'https://manafa.sa/about'],
-      ['Manafa — Homepage', 'https://manafa.sa/'],
-    ],
-  },
-  {
-    id: 'story',
-    type: 'timeline',
-    kicker: 'OUR STORY',
-    title: 'Manafa’s story is one of increasing trust and scale',
-    subtitle: 'Each milestone expanded what the company could make possible for businesses and investors.',
-    timeline: [
-      ['2022', 'Full SAMA licence', 'Debt-based crowdfunding licence after Sandbox testing.'],
-      ['2022', 'SAR 106M Series A', 'Co-led by STV and Wa’ed Ventures.'],
-      ['2023', 'Saudi Unicorns Program', 'Selected for the first program cohort.'],
-      ['2024', 'Aramco SCF', 'Landmark supply-chain financing collaboration announced at FII8.'],
-      ['2025', 'SCF expands', 'Saudi Electricity Company program and SAMA Sandbox permission.'],
-    ],
-    sources: [
-      ['SAMA — Debt crowdfunding licence', 'https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-801.aspx'],
-      ['STV — Manafa Series A', 'https://stv.vc/blog/en/2022/12/28/investing-in-manafa-enabling-sme-financing-and-unlocking-new-asset-classes-to-retail-and-institutional-investors'],
-      ['Saudi Unicorns Program', 'https://ntdp.gov.sa/saudi-unicorn'],
-      ['Aramco — SCF announcement', 'https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],
-      ['SAMA — SCF Sandbox', 'https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-1104.aspx'],
-    ],
-  },
-  {
-    id: 'marketplace',
-    type: 'ecosystem',
-    kicker: 'HOW MANAFA CREATES VALUE',
-    title: 'Manafa orchestrates both sides of financing',
-    subtitle: 'The customer-facing journey is supported by credit, compliance, operations, finance, technology, and servicing.',
-    actors: [
-      ['Companies', 'Seek suitable financing to operate and grow.', Building2],
-      ['Suppliers', 'Need earlier payment and predictable cash flow.', ClipboardCheck],
-      ['Buyers', 'Strengthen their supply chains and working capital.', Network],
-      ['Funders', 'Deploy capital into structured opportunities.', Landmark],
-      ['Investors', 'Access diversified financing opportunities.', CircleDollarSign],
-    ],
-  },
-  {
-    id: 'group',
-    type: 'group',
-    kicker: 'THE ECOSYSTEM AROUND US',
-    title: 'Manafa is part of a wider entrepreneurial story',
-    subtitle: 'Related companies extend the group’s reach across investment, asset management, and technology delivery.',
-    companies: [
-      ['Manafa', 'Debt crowdfunding and business financing', 'manafa.sa'],
-      ['Sukuk Capital', 'Sukuk and capital-market solutions', 'sukuk.sa'],
-      ['Abyan Capital', 'Digital investment and asset management', 'abyancapital.sa'],
-      ['Manafa Technologies', 'Technology delivery team in Pakistan', 'Pakistan'],
-    ],
-    sources: [
-      ['Manafa', 'https://manafa.sa/'],
-      ['Sukuk Capital', 'https://sukuk.sa/'],
-      ['Abyan Capital', 'https://www.abyancapital.sa/'],
-      ['Manafa Technologies', 'https://www.linkedin.com/company/manafa-technologies/'],
-    ],
-  },
-  {
-    id: 'products',
-    type: 'products',
-    kicker: 'SEVEN FINANCING PRODUCTS',
-    title: 'Different needs, one connected financing platform',
-    subtitle: 'Embedded lending is a distribution model—not an eighth financing product.',
-    products: [
-      ['01', 'Invoice Financing'],
-      ['02', 'Letter of Guarantee Financing'],
-      ['03', 'Purchase Order Financing'],
-      ['04', 'Working Capital Financing'],
-      ['05', 'Payroll Financing'],
-      ['06', 'Real Estate Financing'],
-      ['07', 'Supply Chain Financing'],
-    ],
-    sources: [['Manafa — Business financing products', 'https://manafa.sa/']],
-  },
-  {
-    id: 'scf',
-    type: 'image-story',
-    kicker: 'A PIVOTING BUSINESS MOMENT',
-    title: 'SCF brought Manafa into larger, multi-party programs',
-    subtitle: 'The model connects approved buyer obligations, supplier liquidity, and funder capital through one coordinated experience.',
-    image: `${A}scf-milestones.png`,
-    callouts: ['Aramco collaboration announced at FII8 in 2024', 'Saudi Electricity Company program announced in 2025'],
-    sources: [
-      ['Aramco — SCF announcement', 'https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],
-      ['SAP Taulia — SEC program', 'https://taulia.com/company/news/press-releases/sap-taulia-delivers-landmark-supply-chain-finance-transformation-for-saudi-electricity-company-sec/'],
-    ],
-  },
-  {
-    id: 'lifecycle',
-    type: 'process',
-    kicker: 'THE GOLDEN FINANCING LIFECYCLE',
-    title: 'Every financing journey passes through connected decisions',
-    subtitle: 'Product rules differ, but the shared logic helps you understand where each platform and department contributes.',
-    steps: [
-      ['01', 'Company', 'Onboarding and business information'],
-      ['02', 'Request', 'Financing need and evidence'],
-      ['03', 'Assess', 'Operations, credit, compliance'],
-      ['04', 'Approve', 'Offer, conditions, agreements'],
-      ['05', 'Fund', 'Investor or funder participation'],
-      ['06', 'Service', 'Disbursement, LMS, repayment, closure'],
-    ],
-  },
-  {
-    id: 'leadership',
-    type: 'leadership',
-    kicker: 'EXECUTIVE LEADERSHIP',
-    title: 'The leaders you will hear about',
-    subtitle: 'Titles below reflect the currently confirmed operating context—not older website or organization-chart labels.',
-    leaders: [
-      ['Abdulaziz Aladwani', 'Founder & CEO'],
-      ['Mohammed Shahram Javid', 'Chief Technology Officer'],
-      ['Rayan Al-Duhaiman', 'Chief Business Officer'],
-      ['Abdulrahman Al-Sayari', 'Chief Growth Officer'],
-      ['Daniyal Alvi', 'Chief Financial Officer'],
-      ['Samer Samara', 'Chief Control Officer'],
-      ['Reem Murad', 'Chief Legal & Governance Officer'],
-      ['Rayan Al-Suhaibani', 'Chief Information Security Officer'],
-    ],
-  },
-  {
-    id: 'departments',
-    type: 'departments',
-    kicker: 'OUR DELIVERY PARTNERS',
-    title: 'Digital Business works across the organization',
-    subtitle: 'Learn what each department owns, when to involve it, and what a good handoff requires.',
-    departments: [
-      'Digital Investors', 'Digital Experience', 'Technology & Engineering', 'Cybersecurity',
-      'Credit', 'Compliance, Risk & BCM', 'Business Operations', 'Portfolio Management',
-      'Collections', 'Finance & Treasury', 'Legal & Governance', 'Business Development & Partnership',
-      'Marketing & Branding Communication', 'Customer Care', 'Human Resources', 'Internal Audit',
-    ],
-  },
-  {
-    id: 'digital-product',
-    type: 'three-columns',
-    kicker: 'DIGITAL PRODUCT ORGANIZATION',
-    title: 'Three departments shape complementary experiences',
-    subtitle: 'Product leadership reports to the CTO. Raghad’s shared team currently works across two distinct departments.',
-    columns: [
-      ['Digital Business', 'Abdullah Almazyad', ['Business and borrower journeys', 'Buyer, supplier, funder and embedded channels', 'Back-office platforms']],
-      ['Digital Investors', 'Raghad Aljuhani', ['Investor web and mobile', 'Investor platforms', 'Funding-side experience']],
-      ['Digital Experience', 'Raghad Aljuhani', ['Design system', 'External websites', 'Customer Service and Engagement platforms']],
-    ],
-  },
-  {
-    id: 'scope',
-    type: 'scope',
-    kicker: 'DIGITAL BUSINESS',
-    title: 'We own the journeys and the platforms behind them',
-    subtitle: 'The department is broader than the borrower website.',
-    channels: ['Borrower', 'Buyer', 'Supplier / Funder', 'Embedded'],
-    hubs: [
-      ['Customer Hub', 'CRM · Client Lifecycle · Transaction Management'],
-      ['Lending Hub', 'Loan Origination · Loan Management · Collections'],
-      ['Financial Hub', 'Ledger · Treasury · Invoicing & Tax'],
-      ['Embedded Hub', 'Developer Platform · ERP Middleware'],
-      ['Shared Foundations', 'Identity · Logs · Analytics · Knowledge'],
-    ],
-  },
-  {
-    id: 'team',
-    type: 'team',
-    kicker: 'YOUR DIGITAL BUSINESS TEAM',
-    title: 'Know who carries which kind of context',
-    subtitle: 'The team combines product leadership, business analysis, and experience design.',
-    groups: [
-      ['Leadership', ['Abdullah Almazyad — Director', 'Mohammed Alghofaily — Product Lead / UX', 'Fahad Aldossari — Product Lead', 'Bandar Alarifi — Product Lead']],
-      ['Business Analysis', ['Alma Alfowzan', 'Mohammed Alasaker', 'Noura Aljmhoor', 'Danah Alsuhaibani', 'Norah Alahmed', 'Abdulwahab Alghamdi']],
-      ['UX/UI Design', ['Najla Alharthi', 'Nouf Alkernass']],
-    ],
-  },
-  {
-    id: 'delivery',
-    type: 'delivery',
-    kicker: 'DIGITAL FACTORY TO PRODUCTION',
-    title: 'Trace every delivery item back to the original need',
-    subtitle: 'Use the smallest documentation route that makes the work clear and safe.',
-    flow: [
-      ['DF demand', 'Problem, outcome, users, stakeholders, evidence'],
-      ['Scope', 'Clarify boundaries, dependencies, and ownership'],
-      ['Document', 'Lean Jira work or a Confluence BRD for complex solutions'],
-      ['Squad delivery', 'EMQ · ISQ · ASQ · BSQ — linked to DF'],
-      ['Validate', 'Grooming, development, QA, UAT, release readiness'],
-      ['Learn', 'Production outcome, monitoring, feedback, iteration'],
-    ],
-    sources: [
-      ['DF Demand Standard', 'https://manafaco.atlassian.net/wiki/spaces/DFAE/pages/4555505729/02.1+DF+Demand+Standard'],
-      ['Product Delivery Operating Model', 'https://manafaco.atlassian.net/wiki/spaces/DFAE/pages/4555767850/01+Product+Delivery+Operating+Model'],
-      ['Digital Factory Lifecycle and Stage Gates', 'https://manafaco.atlassian.net/wiki/spaces/DFAE/pages/4555833419/01.1+Digital+Factory+Lifecycle+Stage+Gates'],
-    ],
-  },
-  {
-    id: 'roles',
-    type: 'roles',
-    kicker: 'YOUR CRAFT',
-    title: 'BA and UX/UI solve the same problem from different angles',
-    subtitle: 'The best work happens when analysis and design move together from discovery through release.',
-    ba: ['Frame the problem and intended outcome', 'Discover rules, data, dependencies, and exceptions', 'Choose the right artifact and define testable acceptance', 'Support grooming, clarification, UAT, and traceability'],
-    ux: ['Represent user needs and usability', 'Create flows, wireframes, prototypes, and interface designs', 'Design for accessibility, responsiveness, and edge cases', 'Support handoff and review the implemented experience'],
-    shared: 'Understand → explore → align → deliver → learn',
-  },
-  {
-    id: 'learning',
-    type: 'learning',
-    kicker: 'HOW YOU WILL LEARN',
-    title: 'Courses build foundations; real work builds capability',
-    subtitle: 'Learning resources are curated, flexible around delivery, and always connected to practical evidence.',
-    tracks: [
-      ['Shared foundation', ['Manafa business and products', 'Scrum and Agile basics', 'Jira, Confluence and communication', 'Responsible AI and information handling']],
-      ['BA foundation', ['Business analysis mindset', 'Process modelling', 'Requirements and acceptance criteria', 'Grooming, UAT and traceability']],
-      ['UX/UI foundation', ['User-centred design', 'Figma and prototyping', 'Accessibility and design systems', 'Handoff and implementation review']],
-    ],
-  },
-  {
-    id: 'close',
-    type: 'close',
-    accent: 'blue',
-    kicker: 'YOUR FIRST COMMITMENT',
-    title: 'Start with curiosity, ownership, and evidence',
-    subtitle: 'Ask when context is missing. Explore before assuming. Show your reasoning. Request feedback early.',
-    actions: ['Meet the team', 'Explore one complete journey', 'Understand where work and knowledge live'],
-  },
+const productSlides = [
+  { id: 'invoice', number: '01', name: 'Invoice Financing', icon: 'invoice.svg', accent: 'blue', phrase: 'Turn completed work into working cash.', scenario: 'A company has delivered to its customer and issued an invoice—but payment is still weeks away.', outcome: 'Manafa finances the eligible invoice so the company can keep operating instead of waiting.' },
+  { id: 'lg', number: '02', name: 'Letter of Guarantee Financing', icon: 'lg.svg', accent: 'purple', phrase: 'Unlock an opportunity without freezing liquidity.', scenario: 'A business needs a guarantee to bid, perform or fulfil a contractual obligation.', outcome: 'Financing helps the company secure the required guarantee while protecting its working capital.' },
+  { id: 'po', number: '03', name: 'Purchase Order Financing', icon: 'po.svg', accent: 'orange', phrase: 'Finance the order before revenue arrives.', scenario: 'A company has won an order but needs funds to buy inventory, materials or services before delivery.', outcome: 'Manafa supports the cost of fulfilling the purchase order and reaching the next commercial milestone.' },
+  { id: 'working-capital', number: '04', name: 'Working Capital Financing', icon: 'working-capital.svg', accent: 'green', phrase: 'Keep the business moving through the cash cycle.', scenario: 'Growth creates a gap between today’s operating costs and tomorrow’s collections.', outcome: 'Flexible financing supports inventory, suppliers and daily operating needs.' },
+  { id: 'payroll', number: '05', name: 'Payroll Financing', icon: 'payroll.svg', accent: 'cyan', phrase: 'Protect the most important monthly commitment.', scenario: 'A temporary cash-flow delay should not become a delayed salary for employees.', outcome: 'Short-term financing helps an eligible company meet payroll on time.' },
+  { id: 'real-estate', number: '06', name: 'Real Estate Financing', icon: 'real-estate.svg', accent: 'red', phrase: 'Fund opportunities backed by real assets.', scenario: 'A business has a real-estate financing need with a defined asset, purpose and repayment path.', outcome: 'The journey brings asset information, assessment, approval and funding into one controlled flow.' },
+  { id: 'scf-product', number: '07', name: 'Supply Chain Financing', icon: 'scf.svg', accent: 'navy', phrase: 'Make approved invoices work for the whole ecosystem.', scenario: 'A buyer has approved a supplier invoice, but the supplier wants payment before the contractual due date.', outcome: 'Funders provide early payment; the buyer pays later according to the agreed schedule.' },
 ]
 
+const slides = [
+  { id: 'welcome', type: 'cover', title: 'Welcome to Manafa', subtitle: 'Understand the business. Meet the people. Learn the craft. Contribute to real work.', meta: 'Digital Business · BA and UX/UI Co-op Journey' },
+  { id: 'promise', type: 'statement', eyebrow: 'A SEVEN-MONTH EXPERIENCE', title: 'You are joining to contribute—not to observe.', body: 'We will give you context, access, guidance and feedback. In return, bring curiosity, evidence and ownership from the beginning.', accent: 'blue' },
+  { id: 'map', type: 'journey-map', eyebrow: 'YOUR ONBOARDING MAP', title: 'Four questions will guide the journey', items: [['01','Who are we?','The company, its story and why it matters.'],['02','How does the business work?','Customers, products, money and decisions.'],['03','Who makes it happen?','Teams, stakeholders and digital platforms.'],['04','Where do I contribute?','Your craft, workflow and first real mission.']] },
+  { id: 'ownership', type: 'statement', eyebrow: 'HOW WE WORK', title: 'Real responsibility starts early. Independence grows through evidence.', body: 'The first weeks help you understand the environment. Then you pick up meaningful tasks, show your reasoning, ask for feedback and gradually own larger outcomes.', accent: 'green', dark: true },
+
+  { id: 'who-we-are', type: 'brand-hero', eyebrow: 'WHO WE ARE', title: 'Manafa is a Saudi fintech built to be a growth partner.', body: 'We connect businesses seeking financing with funders and investors through regulated, technology-enabled journeys.', logo: 'manafa-logo.svg' },
+  { id: 'why-we-exist', type: 'scene-triptych', eyebrow: 'WHY WE EXIST', title: 'Growth should not stop because cash arrives later than opportunity.', scenes: [['borrower-scene.webp','Supplier','Needs cash before an approved invoice is paid.'],['buyer-scene.webp','Buyer','Wants a stronger, more resilient supply chain.'],['funder-scene.webp','Funder','Wants structured opportunities and efficient deployment.']] },
+  { id: 'orchestrator', type: 'ecosystem', eyebrow: 'THE ROLE MANAFA PLAYS', title: 'One platform coordinates many parties and decisions', actors: [['Businesses',Building2],['Buyers',Network],['Funders',Landmark],['Investors',CircleDollarSign]], center: 'Manafa', footer: 'The visible digital journey is supported by credit, compliance, operations, finance, technology and servicing.' },
+  { id: 'timeline', type: 'timeline', eyebrow: 'OUR STORY', title: 'Trust expanded what Manafa could make possible', points: [['2018','Manafa begins','A technology-led approach to financing and investment.'],['2022','SAMA licence','Full debt-based crowdfunding licence.'],['2022','Series A','SAR 106M led by STV and Wa’ed Ventures.'],['2023','Saudi Unicorns','Selected for the national scale-up program.'],['2024–25','Enterprise SCF','Aramco, SEC and the SAMA Sandbox.']] },
+  { id: 'regulation', type: 'media-proof', eyebrow: 'REGULATION BUILDS TRUST', title: 'Innovation moves inside clear regulatory boundaries', image: 'regulation.png', body: 'Manafa received its full debt-based crowdfunding licence in 2022. In 2025, SAMA permitted Manafa to test supply-chain financing solutions within the Regulatory Sandbox.', fit: 'contain', sources: [['SAMA — Debt crowdfunding licence','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-801.aspx'],['SAMA — SCF Regulatory Sandbox','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-1104.aspx']] },
+  { id: 'series-a', type: 'photo-moment', eyebrow: 'DECEMBER 2022', title: 'SAR 106M to scale the next chapter', body: 'The Series A round, approximately USD 28M, was led by STV and Wa’ed Ventures—supporting new products, wider reach and continued growth.', image: 'series-a.jpg', stat: 'SAR 106M', sources: [['STV — Investing in Manafa','https://stv.vc/blog/en/2022/12/28/investing-in-manafa-enabling-sme-financing-and-unlocking-new-asset-classes-to-retail-and-institutional-investors'],['The National — Manafa Series A','https://www.thenationalnews.com/business/start-ups/2022/12/28/saudi-start-up-manafa-raises-28-million-to-fund-expansion/']] },
+  { id: 'unicorn', type: 'photo-moment', eyebrow: 'SAUDI UNICORNS PROGRAM', title: 'Selected among Saudi Arabia’s high-potential technology companies', body: 'The program connects promising scale-ups with investors, mentors, talent and expansion support on the path toward billion-dollar scale.', image: 'unicorn.jpg', stat: '2023', sources: [['Saudi Unicorns Program','https://ntdp.gov.sa/saudi-unicorn']] },
+  { id: 'aramco', type: 'photo-full', eyebrow: 'FII8 · OCTOBER 2024', title: 'A landmark enterprise SCF collaboration', body: 'Aramco, SIDF, Taulia and Manafa announced one of the world’s largest supply-chain financing programs—designed to unlock liquidity for thousands of suppliers.', image: 'aramco-signing.webp', sources: [['Aramco — SCF announcement','https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution']] },
+  { id: 'sec', type: 'poster-moment', eyebrow: 'FII9 · 2025', title: 'The model expanded to Saudi Electricity Company', body: 'A second national-scale buyer demonstrated that Manafa’s SCF capability could become a repeatable platform—not a one-off project.', image: 'sec-signing.jpg', sources: [['Manafa — SEC SCF announcement','https://www.linkedin.com/posts/manafa-co_fii9-activity-7389028836077678592-D87w']] },
+  { id: 'scale', type: 'metrics', eyebrow: 'MANAFA TODAY', title: 'The story now has real scale behind it', metrics: [['SAR 3.2B+','Total financing'],['200K+','Users'],['190+','Team members'],['12+','Partnerships']], note: 'Public figures should be verified on manafa.sa before each cohort.', sources: [['Manafa — About','https://manafa.sa/about'],['Manafa — Achievements','https://manafa.sa/achievement']] },
+
+  { id: 'group-map', type: 'group-map', eyebrow: 'THE WIDER STORY', title: 'Manafa grew alongside a broader financial and technology ecosystem', companies: [['Manafa','Business financing & investment','manafa-logo.svg'],['Sukuk Capital','Debt instruments & capital markets','sukuk.svg'],['Abyan Capital','Digital asset management','abyan.svg'],['Manafa Technologies','Technology delivery · Pakistan',null]] },
+  { id: 'sister-companies', type: 'company-pair', eyebrow: 'SISTER COMPANIES', title: 'Different propositions, a shared ambition to widen access', companies: [{name:'Sukuk Capital',logo:'sukuk.svg',body:'Makes issuing and investing in sukuk and debt instruments more accessible.'},{name:'Abyan Capital',logo:'abyan.svg',body:'Provides digital, Sharia-compliant investment and portfolio-management experiences.'}], sources: [['Sukuk Capital','https://sukuk.sa/'],['Abyan Capital','https://www.abyancapital.sa/']] },
+  { id: 'manafa-tech', type: 'tech-bridge', eyebrow: 'MANAFA TECHNOLOGIES', title: 'Our technology kitchen extends from Riyadh to Pakistan', body: 'Product, engineering and data work across one delivery system. New joiners should learn how context, decisions and handoffs travel across locations—not treat technology as a remote black box.', places: ['Riyadh','Pakistan'] },
+  { id: 'partners', type: 'partner-wall', eyebrow: 'THE ECOSYSTEM AROUND US', title: 'Investors, public institutions and strategic partners help Manafa scale', image: 'partners.png', body: 'STV and Wa’ed Ventures back the company. Government funds, enablement programs and strategic institutions extend reach, trust and financing capacity.' },
+
+  { id: 'marketplace', type: 'ecosystem', eyebrow: 'THE FINANCING MARKETPLACE', title: 'Value moves when every side understands its role', actors: [['Company',Building2],['Credit & control',ShieldCheck],['Funder',Landmark],['Investor',CircleDollarSign]], center: 'Opportunity', footer: 'Manafa turns a financing need into a structured, assessed and serviceable opportunity.' },
+  { id: 'borrower-journey', type: 'journey-photo', eyebrow: 'THE BUSINESS SIDE', title: 'A company journey begins with a need—not a system', image: 'borrower-scene.webp', steps: ['Discover a suitable product','Submit the business and financing request','Provide evidence and respond to questions','Receive an offer and complete conditions','Get funded and service the facility'] },
+  { id: 'investor-journey', type: 'journey-photo', eyebrow: 'THE FUNDING SIDE', title: 'Funders and investors need confidence before capital moves', image: 'funder-scene.webp', steps: ['Understand the opportunity','Review risk and expected return','Commit capital','Track performance and repayments','Build trust through transparent servicing'] },
+  { id: 'products', type: 'product-overview', eyebrow: 'SEVEN FINANCING PRODUCTS', title: 'Different business moments require different structures', products: productSlides.map(p => [p.number,p.name,p.icon]), note: 'Embedded lending is a distribution model—not an eighth financing product.' },
+  ...productSlides.map(p => ({ ...p, title: p.name, type: 'product-feature', eyebrow: `FINANCING PRODUCT ${p.number}` })),
+  { id: 'lifecycle', type: 'process', eyebrow: 'THE GOLDEN FINANCING LIFECYCLE', title: 'Every product moves through connected decisions', steps: [['01','Onboard','Know the company'],['02','Request','Capture the need'],['03','Assess','Operations, credit & compliance'],['04','Approve','Offer, conditions & agreements'],['05','Fund','Investor or funder participation'],['06','Service','Disburse, repay & close']] },
+
+  { id: 'product-org', type: 'org', eyebrow: 'DIGITAL PRODUCT LEADERSHIP', title: 'Three departments shape complementary digital experiences', leaders: [['Abdullah Almazyad','Digital Business','Borrower and business journeys · back-office platforms','abdullah.webp'],['Raghad','Digital Investors','Investor web and mobile experiences',null],['Raghad','Digital Experience','Cross-channel experience and design',null]], note: 'The three departments operate under CTO Shahram. Digital Investors and Digital Experience currently share employees.' },
+  { id: 'digital-business', type: 'scope', eyebrow: 'DIGITAL BUSINESS', title: 'We own the business journeys and the platforms behind them', channels: ['Business web & mobile','Buyer and supplier channels','Embedded distribution'], platforms: ['CRM','CLM','LOS','LMS','Admin & back office'], owner: 'Abdullah Almazyad · Product Director' },
+  { id: 'platforms', type: 'platform-map', eyebrow: 'THE DIGITAL LANDSCAPE', title: 'A customer experience is only as strong as the platforms behind it', layers: [['Experience','Business web · mobile · embedded · buyer · supplier'],['Decisioning','CRM · CLM · credit assessment · documentation'],['Origination','LOS · workflows · approvals · agreements'],['Servicing','LMS · disbursement · repayment · collections'],['Operations','Admin · reporting · audit trails · integrations']] },
+  { id: 'stakeholders', type: 'stakeholders', eyebrow: 'OUR STAKEHOLDERS', title: 'Digital Business works across the whole organization', groups: [['Decide','Credit','Compliance, Risk & BCM','Legal & Governance'],['Operate','Business Operations','Portfolio Management','Collections','Customer Care'],['Enable','Technology & Engineering','Cybersecurity','Finance & Treasury','Human Resources'],['Grow','Business Development & Partnership','Marketing & Branding Communication','Digital Investors & Experience','Internal Audit']] },
+  { id: 'executives', type: 'portraits', eyebrow: 'EXECUTIVE LEADERSHIP', title: 'The leaders you will hear about', people: [['Abdulaziz Aladwani','Founder & CEO','ceo.webp'],['Mohammed Shahram Javid','Chief Technology Officer','shahram.webp'],['Rayan Al-Duhaiman','Chief Business Officer','rayan-business.webp'],['Abdulrahman Al-Sayari','Chief Growth Officer','abdulrahman.webp'],['Daniyal Alvi','Chief Financial Officer','daniyal.webp'],['Samer Samara','Chief Control Officer','samer.webp'],['Reem Murad','Chief Legal & Governance Officer',null],['Rayan Al-Suhaibani','Chief Information Security Officer','rayan-ciso.webp']] },
+  { id: 'team-one', type: 'team-portraits', eyebrow: 'DIGITAL BUSINESS TEAM · 1 OF 2', title: 'Know the person—and the context they carry', people: [['Abdullah Almazyad','Product Director','abdullah.webp','m'],['Mohammed Alghofaily','Product Lead / UX',null,'m'],['Fahad Aldossari','Product Lead',null,'m'],['Bandar Alarifi','Product Lead',null,'m'],['Alma Alfowzan','Business Analyst',null,'f'],['Mohammed Alasaker','Business Analyst',null,'m']] },
+  { id: 'team-two', type: 'team-portraits', eyebrow: 'DIGITAL BUSINESS TEAM · 2 OF 2', title: 'Every name is a door to a different kind of knowledge', people: [['Noura Aljmhoor','Business Analyst',null,'f'],['Danah Alsuhaibani','Business Analyst',null,'f'],['Norah Alahmed','Business Analyst',null,'f'],['Abdulwahab Alghamdi','Business Analyst',null,'m'],['Najla Alharthi','UX/UI Designer',null,'f'],['Nouf Alkernass','UX/UI Designer',null,'f']] },
+  { id: 'delivery', type: 'delivery', eyebrow: 'FROM NEED TO PRODUCTION', title: 'Trace every delivery item back to the original demand', steps: [['Digital Factory','The business need enters as a demand.'],['Discover','Clarify the outcome, scope, users and dependencies.'],['Define','Use a BRD when the solution needs structured depth.'],['Deliver','Create linked Jira work in Borrower, Embedded, Admin or Investor projects.'],['Validate','Review, test, release and learn from the result.']] },
+  { id: 'craft', type: 'craft', eyebrow: 'TWO CRAFTS · ONE OUTCOME', title: 'BA and UX/UI should move together from discovery to release', ba: ['Frame the problem and business rules','Make data, exceptions and acceptance testable','Maintain traceability through delivery'], ux: ['Represent user needs and usability','Create flows, prototypes and interface designs','Review the implemented experience'], shared: 'Understand → explore → align → deliver → learn' },
+  { id: 'mission', type: 'mission', eyebrow: 'YOUR FIRST REAL MISSION', title: 'Complete one financing journey end to end', body: 'In a safe environment, create a company, submit a financing request, follow assessment and approval, fund the opportunity, service it and close it.', phases: [['Week 1','Meet people · access tools · understand company basics'],['Weeks 2–3','Foundation courses · shadowing · platform exploration'],['Week 4+','Own a scoped task · explain your reasoning · request feedback']], close: 'Start with curiosity. Build confidence through evidence.' },
+]
+
+const accentClass = value => value ? ` accent-${value}` : ''
+
 function Logo({ inverse = false }) {
-  return <img className={`logo ${inverse ? 'logo--inverse' : ''}`} src={`${A}manafa-logo.png`} alt="Manafa" />
+  return <img className={`logo${inverse ? ' logo--inverse' : ''}`} src={`${A}manafa-logo.svg`} alt="Manafa" />
 }
 
 function SlideChrome({ slide, index, total, dark = false }) {
-  return (
-    <>
-      <div className="slide-kicker">{slide.kicker}</div>
-      <Logo inverse={dark} />
-      <div className="slide-number">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</div>
-    </>
-  )
+  return <>
+    <div className="slide-kicker">{slide.eyebrow}</div>
+    <Logo inverse={dark} />
+    <div className="slide-number">{String(index + 1).padStart(2,'0')} / {total}</div>
+  </>
 }
 
 function Header({ slide }) {
-  return (
-    <header className="slide-header">
-      <h1>{slide.title}</h1>
-      {slide.subtitle && <p>{slide.subtitle}</p>}
-    </header>
-  )
+  return <header className="slide-header"><h1>{slide.title}</h1>{slide.subtitle && <p>{slide.subtitle}</p>}</header>
 }
 
 function SourceButton({ slide, onOpen }) {
@@ -319,193 +84,106 @@ function SourceButton({ slide, onOpen }) {
   return <button className="source-button" onClick={onOpen}>Sources</button>
 }
 
+function PersonPlaceholder({ gender = 'm' }) {
+  return <div className={`person-placeholder person-placeholder--${gender}`}><UserRound /></div>
+}
+
+function PersonImage({ src, name, gender }) {
+  return src ? <img src={`${A}${src}`} alt={name} /> : <PersonPlaceholder gender={gender} />
+}
+
 function RenderSlide({ slide, index, total, onSources }) {
-  if (slide.type === 'cover') {
-    return <section className={`slide slide--cover accent-${slide.accent}`}>
-      <SlideChrome slide={slide} index={index} total={total} />
-      <div className="cover-copy">
-        <h1>{slide.title}</h1>
-        <div className="title-rule" />
-        <p>{slide.subtitle}</p>
-      </div>
-      <div className="cover-meta">{slide.meta}</div>
-    </section>
-  }
+  if (slide.type === 'cover') return <section className="slide slide--cover"><Logo /><div className="cover-copy"><h1>{slide.title}</h1><div className="title-rule" /><p>{slide.subtitle}</p></div><div className="cover-meta">{slide.meta}</div><div className="slide-number">01 / {total}</div></section>
 
-  if (slide.type === 'divider') {
-    return <section className={`slide slide--divider accent-${slide.accent}`}>
-      <SlideChrome slide={slide} index={index} total={total} dark />
-      <div className="divider-number">{slide.number}</div>
-      <div className="divider-copy">
-        <h1>{slide.title}</h1>
-        <div className="title-rule" />
-        <p>{slide.subtitle}</p>
-      </div>
-    </section>
-  }
+  const dark = slide.dark || ['photo-full','tech-bridge','mission'].includes(slide.type)
+  return <section className={`slide slide--${slide.type}${dark ? ' slide--dark' : ''}${accentClass(slide.accent)}`}>
+    <SlideChrome slide={slide} index={index} total={total} dark={dark} />
+    {slide.type !== 'photo-full' && <Header slide={slide} />}
 
-  return <section className={`slide slide--${slide.type}`}>
-    <SlideChrome slide={slide} index={index} total={total} />
-    <Header slide={slide} />
+    {slide.type === 'statement' && <div className="statement-copy"><p>{slide.body}</p><div className="statement-line" /></div>}
 
-    {slide.type === 'content' && <div className="numbered-blocks">
-      {slide.blocks.map(([n, title, body]) => <article key={n}>
-        <span>{n}</span><div><h2>{title}</h2><p>{body}</p></div>
-      </article>)}
-    </div>}
+    {slide.type === 'journey-map' && <div className="journey-map">{slide.items.map(([n,t,b])=><article key={n}><span>{n}</span><h2>{t}</h2><p>{b}</p></article>)}</div>}
 
-    {slide.type === 'metrics' && <>
-      <div className="metric-row">{slide.metrics.map(([value, label]) => <article key={label}><strong>{value}</strong><span>{label}</span></article>)}</div>
-      <div className="wide-statement"><ShieldCheck /><p>SAMA-regulated debt-based crowdfunding company connecting financing and investment experiences.</p></div>
-      <p className="footnote">{slide.footnote}</p>
-    </>}
+    {slide.type === 'brand-hero' && <div className="brand-hero"><div><img src={`${A}${slide.logo}`} alt="Manafa" /><p>{slide.body}</p></div><div className="brand-orbit"><span>Companies</span><span>Funders</span><span>Investors</span><strong>Growth</strong></div></div>}
 
-    {slide.type === 'timeline' && <div className="timeline">
-      {slide.timeline.map(([year, title, body], i) => <article key={`${year}-${title}`}>
-        <div className="timeline-index">0{i + 1}</div><div className="timeline-dot" /><strong>{year}</strong><h2>{title}</h2><p>{body}</p>
-      </article>)}
-    </div>}
+    {slide.type === 'scene-triptych' && <div className="scene-triptych">{slide.scenes.map(([img,t,b])=><figure key={t}><img src={`${A}${img}`} alt="" /><figcaption><h2>{t}</h2><p>{b}</p></figcaption></figure>)}</div>}
 
-    {slide.type === 'ecosystem' && <div className="ecosystem">
-      <div className="ecosystem-core"><span>manafa</span><small>orchestrates</small></div>
-      {slide.actors.map(([title, body, Icon]) => <article key={title}><Icon /><h2>{title}</h2><p>{body}</p></article>)}
-    </div>}
+    {slide.type === 'ecosystem' && <div className="ecosystem"><div className="ecosystem-center">{slide.center}</div>{slide.actors.map(([name,Icon],i)=><article key={name} style={{'--i':i}}><Icon/><span>{name}</span></article>)}<p>{slide.footer}</p></div>}
 
-    {slide.type === 'group' && <div className="company-list">
-      {slide.companies.map(([name, role, url], i) => <article key={name}><span>0{i + 1}</span><div><h2>{name}</h2><p>{role}</p></div><small>{url}</small></article>)}
-    </div>}
+    {slide.type === 'timeline' && <div className="timeline">{slide.points.map(([year,t,b],i)=><article key={`${year}-${t}`}><span>0{i+1}</span><strong>{year}</strong><h2>{t}</h2><p>{b}</p></article>)}</div>}
 
-    {slide.type === 'products' && <div className="product-list">
-      {slide.products.map(([n, name]) => <article key={name}><span>{n}</span><h2>{name}</h2><ChevronRight /></article>)}
-    </div>}
+    {slide.type === 'media-proof' && <div className="media-proof"><img src={`${A}${slide.image}`} alt="Manafa regulatory milestones" style={{objectFit:slide.fit}}/><p>{slide.body}</p></div>}
 
-    {slide.type === 'image-story' && <div className="image-story">
-      <figure><img src={slide.image} alt="Manafa supply chain finance milestones" /></figure>
-      <div>{slide.callouts.map((text, i) => <article key={text}><span>0{i + 1}</span><p>{text}</p></article>)}</div>
-    </div>}
+    {slide.type === 'photo-moment' && <div className="photo-moment"><figure><img src={`${A}${slide.image}`} alt="" /></figure><div><strong>{slide.stat}</strong><p>{slide.body}</p></div></div>}
 
-    {slide.type === 'process' && <div className="process-row">
-      {slide.steps.map(([n, title, body]) => <article key={n}><span>{n}</span><h2>{title}</h2><p>{body}</p></article>)}
-    </div>}
+    {slide.type === 'photo-full' && <><img className="photo-full-bg" src={`${A}${slide.image}`} alt="Aramco SCF signing ceremony"/><div className="photo-full-shade"/><div className="photo-full-copy"><h1>{slide.title}</h1><p>{slide.body}</p></div></>}
 
-    {slide.type === 'leadership' && <div className="leadership-grid">
-      {slide.leaders.map(([name, role], i) => <article key={name}><span>{String(i + 1).padStart(2, '0')}</span><div><h2>{name}</h2><p>{role}</p></div></article>)}
-    </div>}
+    {slide.type === 'poster-moment' && <div className="poster-moment"><figure><img src={`${A}${slide.image}`} alt="Manafa SEC SCF announcement" /></figure><p>{slide.body}</p></div>}
 
-    {slide.type === 'departments' && <div className="department-list">
-      {slide.departments.map((name, i) => <article key={name}><span>{String(i + 1).padStart(2, '0')}</span><p>{name}</p></article>)}
-    </div>}
+    {slide.type === 'metrics' && <div className="metrics">{slide.metrics.map(([v,l])=><article key={l}><strong>{v}</strong><span>{l}</span></article>)}<p>{slide.note}</p></div>}
 
-    {slide.type === 'three-columns' && <div className="three-columns">
-      {slide.columns.map(([name, owner, items], i) => <article key={name} className={`column-${i + 1}`}><span>0{i + 1}</span><h2>{name}</h2><p className="owner">{owner}</p><ul>{items.map(item => <li key={item}>{item}</li>)}</ul></article>)}
-    </div>}
+    {slide.type === 'group-map' && <div className="group-map">{slide.companies.map(([name,body,logo],i)=><article key={name} className={i===0?'core':''}>{logo?<img src={`${A}${logo}`} alt={name}/>:<div className="tech-wordmark">MT</div>}<h2>{name}</h2><p>{body}</p></article>)}</div>}
 
-    {slide.type === 'scope' && <div className="scope-layout">
-      <div className="channel-strip">{slide.channels.map((x, i) => <article key={x}><span>0{i + 1}</span><p>{x}</p></article>)}</div>
-      <div className="hub-list">{slide.hubs.map(([name, items]) => <article key={name}><h2>{name}</h2><p>{items}</p></article>)}</div>
-    </div>}
+    {slide.type === 'company-pair' && <div className="company-pair">{slide.companies.map(c=><article key={c.name}><img src={`${A}${c.logo}`} alt={c.name}/><p>{c.body}</p></article>)}</div>}
 
-    {slide.type === 'team' && <div className="team-groups">
-      {slide.groups.map(([name, people], i) => <article key={name}><div className="team-title"><span>0{i + 1}</span><h2>{name}</h2></div><ul>{people.map(p => <li key={p}>{p}</li>)}</ul></article>)}
-    </div>}
+    {slide.type === 'tech-bridge' && <div className="tech-bridge"><div><span>{slide.places[0]}</span><strong>Product decisions<br/>move with context</strong><span>{slide.places[1]}</span></div><p>{slide.body}</p></div>}
 
-    {slide.type === 'delivery' && <div className="delivery-flow">
-      {slide.flow.map(([title, body], i) => <article key={title}><span>0{i + 1}</span><h2>{title}</h2><p>{body}</p></article>)}
-    </div>}
+    {slide.type === 'partner-wall' && <div className="partner-wall"><figure><img src={`${A}${slide.image}`} alt="Manafa investors and institutional partners"/></figure><p>{slide.body}</p></div>}
 
-    {slide.type === 'roles' && <div className="roles-layout">
-      <article><div className="role-title"><FileText /><h2>Business Analysis</h2></div><ul>{slide.ba.map(x => <li key={x}><Check />{x}</li>)}</ul></article>
-      <article><div className="role-title"><PanelTop /><h2>UX/UI Design</h2></div><ul>{slide.ux.map(x => <li key={x}><Check />{x}</li>)}</ul></article>
-      <div className="shared-role">{slide.shared}</div>
-    </div>}
+    {slide.type === 'journey-photo' && <div className="journey-photo"><figure><img src={`${A}${slide.image}`} alt=""/></figure><ol>{slide.steps.map((s,i)=><li key={s}><span>0{i+1}</span>{s}</li>)}</ol></div>}
 
-    {slide.type === 'learning' && <div className="learning-tracks">
-      {slide.tracks.map(([name, items], i) => <article key={name}><span>0{i + 1}</span><h2>{name}</h2><ul>{items.map(x => <li key={x}>{x}</li>)}</ul></article>)}
-    </div>}
+    {slide.type === 'product-overview' && <div className="product-overview">{slide.products.map(([n,name,icon])=><article key={name}><span>{n}</span><img src={`${A}${icon}`} alt=""/><h2>{name}</h2></article>)}<p>{slide.note}</p></div>}
 
-    {slide.type === 'close' && <div className="close-layout">
-      <div><Sparkles /><p>{slide.subtitle}</p></div>
-      <ol>{slide.actions.map((x, i) => <li key={x}><span>0{i + 1}</span>{x}</li>)}</ol>
-    </div>}
+    {slide.type === 'product-feature' && <div className="product-feature"><div className="product-icon"><span>{slide.number}</span><img src={`${A}${slide.icon}`} alt="" /></div><div className="product-copy"><h2>{slide.phrase}</h2><div><small>THE MOMENT</small><p>{slide.scenario}</p></div><div><small>WHAT THE PRODUCT ENABLES</small><p>{slide.outcome}</p></div></div></div>}
 
-    <SourceButton slide={slide} onOpen={onSources} />
+    {slide.type === 'process' && <div className="process">{slide.steps.map(([n,t,b])=><article key={n}><span>{n}</span><h2>{t}</h2><p>{b}</p></article>)}</div>}
+
+    {slide.type === 'org' && <div className="org">{slide.leaders.map(([name,dept,body,img],i)=><article key={`${name}-${dept}`}><PersonImage src={img} name={name} gender={i?'f':'m'}/><div><span>{dept}</span><h2>{name}</h2><p>{body}</p></div></article>)}<p>{slide.note}</p></div>}
+
+    {slide.type === 'scope' && <div className="scope"><div className="scope-owner"><PersonImage src="abdullah.webp" name="Abdullah Almazyad"/><div><strong>{slide.owner}</strong><p>Business and borrower experiences · products and platforms serving every financing line</p></div></div><div className="scope-columns"><article><span>CHANNELS</span>{slide.channels.map(x=><p key={x}>{x}</p>)}</article><article><span>PLATFORMS</span>{slide.platforms.map(x=><p key={x}>{x}</p>)}</article></div></div>}
+
+    {slide.type === 'platform-map' && <div className="platform-map">{slide.layers.map(([name,body],i)=><article key={name}><span>0{i+1}</span><h2>{name}</h2><p>{body}</p></article>)}</div>}
+
+    {slide.type === 'stakeholders' && <div className="stakeholders">{slide.groups.map(([verb,...names],i)=><article key={verb}><span>0{i+1}</span><h2>{verb}</h2><div>{names.map(n=><p key={n}>{n}</p>)}</div></article>)}</div>}
+
+    {slide.type === 'portraits' && <div className="portraits">{slide.people.map(([name,role,img])=><article key={name}><PersonImage src={img} name={name}/><h2>{name}</h2><p>{role}</p></article>)}</div>}
+
+    {slide.type === 'team-portraits' && <div className="team-portraits">{slide.people.map(([name,role,img,gender])=><article key={name}><PersonImage src={img} name={name} gender={gender}/><div><h2>{name}</h2><p>{role}</p></div></article>)}</div>}
+
+    {slide.type === 'delivery' && <div className="delivery">{slide.steps.map(([name,body],i)=><article key={name}><span>0{i+1}</span><h2>{name}</h2><p>{body}</p>{i<slide.steps.length-1&&<ChevronRight/>}</article>)}</div>}
+
+    {slide.type === 'craft' && <div className="craft"><article><FileText/><h2>Business Analysis</h2>{slide.ba.map(x=><p key={x}><Check/>{x}</p>)}</article><article><PanelTop/><h2>UX/UI Design</h2>{slide.ux.map(x=><p key={x}><Check/>{x}</p>)}</article><strong>{slide.shared}</strong></div>}
+
+    {slide.type === 'mission' && <div className="mission"><div className="mission-main"><Sparkles/><p>{slide.body}</p></div><div className="mission-phases">{slide.phases.map(([t,b])=><article key={t}><span>{t}</span><p>{b}</p></article>)}</div><strong>{slide.close}</strong></div>}
+
+    <SourceButton slide={slide} onOpen={onSources}/>
   </section>
 }
 
 function App() {
-  const [current, setCurrent] = useState(() => {
-    const hash = window.location.hash.replace('#', '')
-    const index = slides.findIndex(s => s.id === hash)
-    return index >= 0 ? index : 0
-  })
-  const [overview, setOverview] = useState(false)
-  const [sourceSlide, setSourceSlide] = useState(null)
+  const [current,setCurrent] = useState(()=>{const hash=location.hash.replace('#','');const i=slides.findIndex(s=>s.id===hash);return i>=0?i:0})
+  const [overview,setOverview] = useState(false)
+  const [sourceSlide,setSourceSlide] = useState(null)
   const touchStart = useRef(null)
+  const go = useCallback(next=>{const bounded=Math.max(0,Math.min(slides.length-1,next));setCurrent(bounded);history.replaceState(null,'',`#${slides[bounded].id}`)},[])
 
-  const go = useCallback((next) => {
-    const bounded = Math.max(0, Math.min(slides.length - 1, next))
-    setCurrent(bounded)
-    window.history.replaceState(null, '', `#${slides[bounded].id}`)
-  }, [])
+  useEffect(()=>{
+    const hashChange=()=>{const i=slides.findIndex(s=>s.id===location.hash.replace('#',''));if(i>=0)setCurrent(i)}
+    const key=e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1);if(e.key.toLowerCase()==='o')setOverview(v=>!v);if(e.key==='Escape'){setOverview(false);setSourceSlide(null)}}
+    addEventListener('hashchange',hashChange);addEventListener('keydown',key)
+    return()=>{removeEventListener('hashchange',hashChange);removeEventListener('keydown',key)}
+  },[current,go])
 
-  useEffect(() => {
-    const onHashChange = () => {
-      const hash = window.location.hash.replace('#', '')
-      const index = slides.findIndex(s => s.id === hash)
-      if (index >= 0) setCurrent(index)
-    }
-    const onKey = (event) => {
-      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { event.preventDefault(); go(current + 1) }
-      if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); go(current - 1) }
-      if (event.key === 'Home') go(0)
-      if (event.key === 'End') go(slides.length - 1)
-      if (event.key.toLowerCase() === 'o') setOverview(v => !v)
-      if (event.key === 'Escape') { setOverview(false); setSourceSlide(null) }
-    }
-    window.addEventListener('hashchange', onHashChange)
-    window.addEventListener('keydown', onKey)
-    return () => {
-      window.removeEventListener('hashchange', onHashChange)
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [current, go])
-
-  const onTouchStart = (e) => { touchStart.current = e.changedTouches[0].clientX }
-  const onTouchEnd = (e) => {
-    if (touchStart.current == null) return
-    const delta = e.changedTouches[0].clientX - touchStart.current
-    if (Math.abs(delta) > 50) go(current + (delta < 0 ? 1 : -1))
-    touchStart.current = null
-  }
-
-  const currentSlide = slides[current]
-  const progress = useMemo(() => ((current + 1) / slides.length) * 100, [current])
+  const onTouchStart=e=>{touchStart.current=e.changedTouches[0].clientX}
+  const onTouchEnd=e=>{if(touchStart.current==null)return;const d=e.changedTouches[0].clientX-touchStart.current;if(Math.abs(d)>50)go(current+(d<0?1:-1));touchStart.current=null}
+  const progress=useMemo(()=>((current+1)/slides.length)*100,[current])
 
   return <main className="deck" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-    <div className="stage">
-      <RenderSlide slide={currentSlide} index={current} total={slides.length} onSources={() => setSourceSlide(currentSlide)} />
-    </div>
-
-    <nav className="deck-controls" aria-label="Presentation controls">
-      <button onClick={() => setOverview(true)} aria-label="Open slide overview"><Menu /></button>
-      <button onClick={() => go(current - 1)} disabled={current === 0} aria-label="Previous slide"><ArrowLeft /></button>
-      <div className="progress" aria-label={`Slide ${current + 1} of ${slides.length}`}><span style={{ width: `${progress}%` }} /></div>
-      <button onClick={() => go(current + 1)} disabled={current === slides.length - 1} aria-label="Next slide"><ArrowRight /></button>
-      <button onClick={() => document.documentElement.requestFullscreen?.()} aria-label="Enter full screen"><Expand /></button>
-    </nav>
-
-    {overview && <div className="overlay" role="dialog" aria-modal="true" aria-label="Slide overview">
-      <div className="overlay-header"><div><Presentation /><h2>Onboarding overview</h2></div><button onClick={() => setOverview(false)} aria-label="Close slide overview"><X /></button></div>
-      <div className="overview-grid">{slides.map((slide, i) => <button key={slide.id} onClick={() => { go(i); setOverview(false) }} className={i === current ? 'active' : ''}>
-        <span>{String(i + 1).padStart(2, '0')}</span><p>{slide.title}</p>
-      </button>)}</div>
-    </div>}
-
-    {sourceSlide && <div className="overlay source-overlay" role="dialog" aria-modal="true" aria-label="Sources">
-      <div className="overlay-header"><div><BookOpen /><h2>Sources — {sourceSlide.title}</h2></div><button onClick={() => setSourceSlide(null)} aria-label="Close sources"><X /></button></div>
-      <div className="source-list">{sourceSlide.sources.map(([label, url]) => <a key={url} href={url} target="_blank" rel="noreferrer"><span>{label}</span><ChevronRight /></a>)}</div>
-    </div>}
+    <div className="stage"><RenderSlide slide={slides[current]} index={current} total={slides.length} onSources={()=>setSourceSlide(slides[current])}/></div>
+    <nav className="deck-controls" aria-label="Presentation controls"><button onClick={()=>setOverview(true)} aria-label="Open slide overview"><Menu/></button><button onClick={()=>go(current-1)} disabled={current===0} aria-label="Previous slide"><ArrowLeft/></button><div className="progress" aria-label={`Slide ${current+1} of ${slides.length}`}><span style={{width:`${progress}%`}}/></div><button onClick={()=>go(current+1)} disabled={current===slides.length-1} aria-label="Next slide"><ArrowRight/></button><button onClick={()=>document.documentElement.requestFullscreen?.()} aria-label="Enter full screen"><Expand/></button></nav>
+    {overview&&<div className="overlay" role="dialog" aria-modal="true" aria-label="Slide overview"><div className="overlay-header"><div><Presentation/><h2>Onboarding overview</h2></div><button onClick={()=>setOverview(false)} aria-label="Close slide overview"><X/></button></div><div className="overview-grid">{slides.map((s,i)=><button key={s.id} className={i===current?'active':''} onClick={()=>{go(i);setOverview(false)}}><span>{String(i+1).padStart(2,'0')}</span><p>{s.title}</p></button>)}</div></div>}
+    {sourceSlide&&<div className="overlay source-overlay" role="dialog" aria-modal="true" aria-label="Sources"><div className="overlay-header"><div><BookOpen/><h2>Sources — {sourceSlide.title}</h2></div><button onClick={()=>setSourceSlide(null)} aria-label="Close sources"><X/></button></div><div className="source-list">{sourceSlide.sources.map(([label,url])=><a key={url} href={url} target="_blank" rel="noreferrer"><span>{label}</span><ChevronRight/></a>)}</div></div>}
   </main>
 }
 
-createRoot(document.getElementById('root')).render(<App />)
+createRoot(document.getElementById('root')).render(<App/>)

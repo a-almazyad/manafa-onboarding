@@ -1,115 +1,99 @@
 # Manafa Digital Business Co-op Onboarding Presentation
 
-## Purpose and scope
+## Purpose
 
-This is the content blueprint for the reusable onboarding presentation for Business Analyst and UX/UI co-op joiners in Manafa's Digital Business Department.
+This document mirrors the 40-slide interactive HTML onboarding presentation for Business Analyst and UX/UI co-op joiners in Manafa's Digital Business Department.
 
 - **Audience:** BA and UX/UI co-ops, typically from MIS or IS backgrounds
 - **Experience:** Seven months, with real contribution beginning early
 - **Owner:** Director of Digital Business or a delegated team member
 - **Language:** English first
-- **Format:** Interactive HTML presentation
-- **Scope boundary:** Onboarding only. The Buddy Program is a separate document and operating program.
+- **Scope:** Onboarding only; the Buddy Program remains separate
+- **Visual direction:** Manafa Weekly Product Leadership presentation system, expanded with authentic photography, logos, portraits, product icons and visual storytelling
 
-The deck intentionally contains **18 slides**. Related subjects are combined so the presentation gives new joiners a clear map without becoming a long corporate lecture. Detailed practice, courses, shadowing, and assignments happen after the presentation.
+The deck uses 40 deliberately paced slides. The count is not intended to create a long lecture: several slides are photographic or single-idea moments designed to take less than a minute.
 
-## Design principles
+## Narrative
 
-1. Explain the company and business before internal tools and artifacts.
-2. Give a useful high-level map; build depth through guided real work.
-3. Show how BA and UX/UI collaborate while preserving their distinct crafts.
-4. Introduce ownership early and increase independence with demonstrated readiness.
-5. Treat old Jira, Confluence, and presentation content as reference material until confirmed current.
-6. Keep public metrics and time-sensitive company facts easy to verify and update.
+By the end, new co-ops should understand why Manafa exists, how the financing marketplace works, how the company grew, who contributes to delivery, where Digital Business fits, and how they can begin meaningful work safely and early.
 
-## The 18-slide structure
+## Slide structure
 
-### 1. Welcome to Manafa
+### Welcome and expectations
 
-Set a welcoming tone and establish the promise: understand the business, learn the craft, and contribute to real work.
+1. **Welcome to Manafa** — Opening promise and audience.
+2. **You are joining to contribute—not to observe** — Early ownership culture.
+3. **Four questions will guide the journey** — Company, business, organization and contribution.
+4. **Real responsibility starts early** — Independence grows through evidence.
 
-### 2. Four things to understand before you begin
+### Manafa's story
 
-Introduce the onboarding map: the company, the business, the organization, and the joiner's contribution.
+5. **Manafa is a Saudi fintech built to be a growth partner** — Simple company definition.
+6. **Growth should not stop because cash arrives later than opportunity** — Supplier, buyer and funder needs.
+7. **One platform coordinates many parties and decisions** — Manafa as orchestrator.
+8. **Trust expanded what Manafa could make possible** — Company milestone timeline.
+9. **Innovation moves inside clear regulatory boundaries** — SAMA licence and SCF Sandbox.
+10. **SAR 106M to scale the next chapter** — Series A and authentic team photograph.
+11. **Selected among Saudi Arabia's high-potential technology companies** — Saudi Unicorns Program.
+12. **A landmark enterprise SCF collaboration** — Full-bleed official Aramco FII8 signing photograph.
+13. **The model expanded to Saudi Electricity Company** — Official Manafa SEC announcement visual.
+14. **The story now has real scale behind it** — Current public metrics.
 
-### 3. Manafa at a glance
+### The wider ecosystem
 
-Explain Manafa simply and show the latest approved public figures for financing, users, team size, and partnerships. Add a maintenance reminder to confirm these figures before each cohort.
+15. **Manafa grew alongside a broader financial and technology ecosystem** — Manafa, Sukuk, Abyan and Manafa Technologies.
+16. **Different propositions, a shared ambition to widen access** — Sister-company profiles and logos.
+17. **Our technology kitchen extends from Riyadh to Pakistan** — How context moves across locations.
+18. **Investors, public institutions and strategic partners help Manafa scale** — Investor and partner logos.
 
-### 4. Manafa's story
+### How the business works
 
-Combine the most important milestones into one timeline: SAMA licence, Series A, Saudi Unicorns Program, Aramco SCF, SEC SCF, and the SAMA SCF Sandbox permission.
+19. **Value moves when every side understands its role** — Financing marketplace.
+20. **A company journey begins with a need—not a system** — Borrower journey.
+21. **Funders and investors need confidence before capital moves** — Funding journey.
+22. **Different business moments require different structures** — Overview of seven products.
+23. **Invoice Financing** — Completed work becomes working cash.
+24. **Letter of Guarantee Financing** — Opportunity without frozen liquidity.
+25. **Purchase Order Financing** — Funding an order before revenue arrives.
+26. **Working Capital Financing** — Keeping the business moving through the cash cycle.
+27. **Payroll Financing** — Protecting a critical monthly commitment.
+28. **Real Estate Financing** — Financing structured around real assets.
+29. **Supply Chain Financing** — Early payment across buyer, supplier and funder relationships.
+30. **Every product moves through connected decisions** — Golden financing lifecycle.
 
-### 5. How Manafa creates value
+### Organization, people and contribution
 
-Show Manafa as the orchestrator connecting companies, suppliers, buyers, funders, and investors, supported by internal control and delivery functions.
+31. **Three departments shape complementary digital experiences** — Digital Business, Digital Investors and Digital Experience.
+32. **We own the business journeys and the platforms behind them** — Digital Business scope and owner.
+33. **A customer experience is only as strong as the platforms behind it** — CRM, CLM, LOS, LMS and back-office landscape.
+34. **Digital Business works across the whole organization** — Stakeholder departments.
+35. **The leaders you will hear about** — Executive portraits, names and current confirmed titles.
+36. **Know the person—and the context they carry** — Digital Business team, first six people.
+37. **Every name is a door to a different kind of knowledge** — Digital Business team, next six people.
+38. **Trace every delivery item back to the original demand** — Digital Factory, discovery, BRD, Jira delivery and validation.
+39. **BA and UX/UI should move together from discovery to release** — Complementary crafts and shared loop.
+40. **Complete one financing journey end to end** — First practical mission and early learning path.
 
-### 6. The wider Manafa ecosystem
+## Maintenance before each cohort
 
-Introduce Manafa, Sukuk Capital, Abyan Capital, and Manafa Technologies in Pakistan. Use “sister companies” unless Legal confirms a different corporate relationship.
+Confirm the following before presenting:
 
-### 7. The seven financing products
+- Public metrics on Manafa's website
+- Executive titles and portraits
+- Digital Business team names and job titles
+- Product taxonomy
+- Current platforms and ownership
+- Digital Factory, Confluence and Jira workflow
+- Regulatory wording
+- Approved public photographs and partner logos
 
-Present Invoice Financing, Letter of Guarantee Financing, Purchase Order Financing, Working Capital Financing, Payroll Financing, Real Estate Financing, and Supply Chain Financing. Clarify that embedded lending is a distribution model, not an eighth product.
+## Supporting onboarding material
 
-### 8. SCF as a pivotal business moment
+The live presentation gives the map. Detailed workshops and assignments should separately cover:
 
-Use the supplied visual to explain how the Aramco and Saudi Electricity Company programs moved Manafa into complex multi-party, enterprise-scale financing journeys.
-
-### 9. The golden financing lifecycle
-
-Give one reusable mental model: company onboarding, financing request, assessment, approval, funding, servicing, repayment, and closure. Explain that rules vary by product while the connected decisions remain recognizable.
-
-### 10. Executive leadership
-
-Introduce the currently confirmed executive team and their functions. Do not reuse outdated website or archived organization-chart titles without validation.
-
-### 11. Departments Digital Business works with
-
-Present the stakeholder departments as an interaction map, not a reporting hierarchy: Digital Investors, Digital Experience, Technology & Engineering, Cybersecurity, Credit, Compliance/Risk/BCM, Business Operations, Portfolio Management, Collections, Finance & Treasury, Legal & Governance, Business Development & Partnership, Marketing & Branding Communication, Customer Care, Human Resources, and Internal Audit.
-
-### 12. The three digital product departments
-
-Show Digital Business under Abdullah and Digital Investors plus Digital Experience under Raghad. Explain that Raghad's two departments currently share employees and that product leadership works under CTO Shahram.
-
-### 13. Digital Business scope
-
-Explain that Digital Business owns the borrower/business experience and the back-office products and platforms serving business lines and financing products. Introduce the business web/mobile channel and the internal platforms such as CRM, CLM, LOS, LMS, Admin, and related tooling at a high level.
-
-### 14. Digital Business team
-
-List the current team members by role so new joiners know where relevant context lives. Maintain this slide before every cohort.
-
-### 15. From demand to production
-
-Explain the current delivery model: Digital Factory demand, discovery and sizing, BRD when the solution warrants it, delivery work in the Embedded/Borrower/Admin/Investor Jira projects as applicable, linking work back to the Digital Factory demand, validation, release, and learning.
-
-### 16. BA and UX/UI collaboration
-
-Compare the two crafts on one slide. BA frames needs, rules, data, exceptions, acceptance, and traceability. UX/UI represents user needs through flows, prototypes, interface design, accessibility, handoff, and implementation review. Reinforce the shared loop: understand, explore, align, deliver, and learn.
-
-### 17. How capability will grow
-
-Separate three complementary methods: selected foundation courses, supervised real delivery work, and feedback/reflection. Specific course names and links may evolve independently without redesigning the deck.
-
-### 18. Your first commitment
-
-Close with three immediate actions: meet the team, explore one complete financing journey, and understand where work and knowledge live. Reinforce curiosity, ownership, evidence, and early feedback.
-
-## Delivery guidance
-
-- Present the 18 slides as one shared welcome session, with discussion where useful.
-- Do not teach every platform, policy, or artifact in depth during this presentation.
-- Use later workshops and practical assignments for staging journeys, Digital Factory/Jira/Confluence practice, role foundations, HR tools, and company policies.
-- Source buttons in the HTML deck expose public references for time-sensitive claims.
-- Reconfirm the team list, leadership roster, public metrics, product taxonomy, and Jira workflow before each cohort.
-
-## Deferred items and placeholders
-
-- Current HR leave/application instructions
-- Final certificate-support policy summary
-- Approved role-relevant certificate shortlist
-- Selected low-cost or free BA and UX/UI foundation courses
-- Environment-specific access and staging exercise instructions
-
-These items belong in the supporting onboarding journey, not as additional slides unless a future cohort demonstrates a clear need.
+- Company systems, HR applications and leave requests
+- Slack, Microsoft Exchange, Jira and Confluence
+- Certificate-support policy and approved certificates
+- Selected BA and UX/UI foundation courses
+- Staging access and safe test data
+- Seven-product and end-to-end financing exercises
