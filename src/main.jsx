@@ -66,31 +66,31 @@ const milestones = [
 const slides = [
   { id:'welcome', type:'cover', title:'Welcome to Manafa', subtitle:'Digital Business onboarding' },
   { id:'manafa-section', type:'section', chapter:'01', title:'Manafa', subtitle:'The company, its business and the people behind it' },
-  { id:'at-a-glance', type:'at-glance', title:'Manafa at a glance', sources:[['Manafa — About','https://manafa.sa/about']] },
-  { id:'business-model', type:'business-model', title:'How Manafa connects capital with business needs' },
-  { id:'company-story', type:'milestones', title:'How Manafa grew into a national financing platform' },
-  { id:'regulation', type:'regulation', title:'Two regulatory milestones shaped the business', sources:[['SAMA — debt crowdfunding licence','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-801.aspx'],['SAMA — SCF Regulatory Sandbox','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-1104.aspx']] },
-  { id:'growth-milestones', type:'growth', title:'Investment and national recognition accelerated the journey', sources:[['STV — Investing in Manafa','https://stv.vc/blog/en/2022/12/28/investing-in-manafa-enabling-sme-financing-and-unlocking-new-asset-classes-to-retail-and-institutional-investors'],['Saudi Unicorns Program','https://hub.misk.org.sa/programs/entrepreneurship/saudi-unicorns/']] },
-  { id:'national-programs', type:'programs', title:'SCF partnerships moved Manafa to national scale', sources:[['Aramco — SCF announcement','https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],['Manafa — SEC SCF announcement','https://www.linkedin.com/posts/manafa-co_fii9-activity-7389028836077678592-D87w']] },
-  { id:'metrics', type:'metrics', title:'Manafa today', sources:[['Manafa — Achievements','https://manafa.sa/achievement']] },
-  { id:'leadership', type:'leadership', title:'The executive team' },
-  { id:'group', type:'group', title:'A growing group with shared roots' },
-  { id:'partners', type:'partners', title:'The ecosystem around Manafa' },
+  { id:'at-a-glance', type:'at-glance', title:'Manafa at a glance', lede:'Manafa is a Saudi fintech that connects businesses seeking finance with individuals and institutions seeking investment opportunities.', sources:[['Manafa — About','https://manafa.sa/about']] },
+  { id:'business-model', type:'business-model', title:'How Manafa connects capital with business needs', lede:'Crowdlending and supply-chain financing involve different participants, while relying on one regulated digital and operational foundation.' },
+  { id:'company-story', type:'milestones', title:'How Manafa grew into a national financing platform', lede:'The story moves from founding and licensing to institutional investment, national recognition and large-scale financing programs.' },
+  { id:'regulation', type:'regulation', title:'Two regulatory milestones shaped the business', lede:'The debt-crowdfunding licence established Manafa’s core regulated activity; the SCF sandbox opened a controlled path for the next business line.', sources:[['SAMA — debt crowdfunding licence','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-801.aspx'],['SAMA — SCF Regulatory Sandbox','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-1104.aspx']] },
+  { id:'growth-milestones', type:'growth', title:'Investment and national recognition accelerated the journey', lede:'External backing helped Manafa invest in technology and talent, while the Saudi Unicorns selection recognised its potential to scale beyond the local market.', sources:[['STV — Investing in Manafa','https://stv.vc/blog/en/2022/12/28/investing-in-manafa-enabling-sme-financing-and-unlocking-new-asset-classes-to-retail-and-institutional-investors'],['Saudi Unicorns Program','https://hub.misk.org.sa/programs/entrepreneurship/saudi-unicorns/']] },
+  { id:'national-programs', type:'programs', title:'SCF partnerships moved Manafa to national scale', lede:'The Aramco and Saudi Electricity Company programs brought Manafa into complex buyer-led ecosystems serving large supplier networks.', sources:[['Aramco — SCF announcement','https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],['Manafa — SEC SCF announcement','https://www.linkedin.com/posts/manafa-co_fii9-activity-7389028836077678592-D87w']] },
+  { id:'metrics', type:'metrics', title:'Manafa today', lede:'These public figures show the scale of activity the platform, operations and product teams support today.', sources:[['Manafa — Achievements','https://manafa.sa/achievement']] },
+  { id:'leadership', type:'leadership', title:'The executive team', lede:'The executive team brings together business, technology, growth, finance, control and governance under the Founder and CEO.' },
+  { id:'group', type:'group', title:'A growing group with shared roots', lede:'Manafa’s journey has produced specialised sister companies and a dedicated technology organisation, each with a distinct mandate.' },
+  { id:'partners', type:'partners', title:'The ecosystem around Manafa', lede:'Manafa scales through institutional investors and partnerships with public and private organisations across the SME-financing ecosystem.' },
   { id:'business-section', type:'section', chapter:'02', title:'Business and products', subtitle:'The financing portfolio and the journey behind every request', accent:'violet' },
-  { id:'products', type:'products', title:'Seven ways Manafa finances businesses' },
-  { id:'lifecycle', type:'lifecycle', title:'What happens from application to closure' },
+  { id:'products', type:'products', title:'Seven ways Manafa finances businesses', lede:'Each product addresses a different cash-flow or contractual need, but all rely on the same disciplines of onboarding, assessment, funding and servicing.' },
+  { id:'lifecycle', type:'lifecycle', title:'What happens from application to closure', lede:'A financing request crosses customer-facing, credit, operational and capital-participation activities before it can be fully closed.' },
   { id:'digital-section', type:'section', chapter:'03', title:'Digital Business', subtitle:'The stakeholders, team, platforms and delivery model', accent:'teal' },
-  { id:'departments', type:'departments', title:'The departments we work with' },
-  { id:'product-org', type:'product-org', title:'Where Digital Product sits' },
-  { id:'team', type:'team', title:'Meet the Digital Business team' },
-  { id:'digital-business', type:'digital-business', title:'What Digital Business owns' },
-  { id:'strategy-problem', type:'strategy-problem', title:'Why the current product model must change' },
-  { id:'strategy-method', type:'strategy-method', title:'How the target structure was developed' },
-  { id:'platform-strategy', type:'platform-strategy', title:'From one Admin Portal to a modular product suite' },
-  { id:'platform-progress', type:'platform-progress', title:'The transition is already underway' },
-  { id:'delivery', type:'delivery', title:'How a demand becomes a production release' },
-  { id:'ways-of-working', type:'ways', title:'How we work together' },
-  { id:'tools', type:'tools', title:'Your daily toolkit and company essentials' },
+  { id:'departments', type:'departments', title:'The departments we work with', lede:'Digital Business does not deliver alone. Each financing journey depends on specialised stakeholders who shape policy, risk, operations and customer outcomes.' },
+  { id:'product-org', type:'product-org', title:'Where Digital Product sits', lede:'Product reports through Technology and is organised into two closely connected areas covering business, investor and experience outcomes.' },
+  { id:'team', type:'team', title:'Meet the Digital Business team', lede:'Product Leads, Business Analysts and UX/UI Designers work together from problem definition through production delivery.' },
+  { id:'digital-business', type:'digital-business', title:'What Digital Business owns', lede:'The department connects external business channels with the internal platforms required to originate, assess, fund and service financing.' },
+  { id:'strategy-problem', type:'strategy-problem', title:'Why the current product model must change', lede:'A single expanding Admin Portal concentrates unrelated domains, obscures ownership and makes every new product harder to scale safely.' },
+  { id:'strategy-method', type:'strategy-method', title:'How the target structure was developed', lede:'The target structure came from internal discovery, external benchmarking and validation—not from naming systems in isolation.' },
+  { id:'platform-strategy', type:'platform-strategy', title:'From one Admin Portal to a modular product suite', lede:'The strategy separates audience-facing channels, core business domains and shared capabilities while retaining a dedicated embedded platform.' },
+  { id:'platform-progress', type:'platform-progress', title:'The transition is already underway', lede:'Some products are live, some are being built, and others remain in analysis or ideation; the target architecture is a direction of travel.' },
+  { id:'delivery', type:'delivery', title:'How a demand becomes a production release', lede:'Traceability connects the original business demand to discovery, analysis, delivery work, release decisions and post-launch learning.' },
+  { id:'ways-of-working', type:'ways', title:'How we work together', lede:'Our workflow gives structure to delivery without removing ownership: discuss early, document decisions and refine the solution together.' },
+  { id:'tools', type:'tools', title:'Your daily toolkit and company essentials', lede:'Each tool has a clear purpose—from communication and documentation to delivery tracking, HR requests and professional development.' },
   { id:'thank-you', type:'thanks', title:'Welcome aboard', subtitle:'Questions?' },
 ]
 
@@ -122,7 +122,7 @@ function RenderSlide({ slide, index, total, onSources }) {
   const dark = ['metrics','thanks'].includes(slide.type)
   return <section className={`slide content content--${slide.type}${dark?' dark':''}`}>
     <Chrome index={index} total={total} dark={dark}/>
-    <header className="content-header"><h1>{slide.title}</h1><div/></header>
+    <header className="content-header"><h1>{slide.title}</h1><div/>{slide.lede&&<p className="slide-lede">{slide.lede}</p>}</header>
 
     {slide.type === 'at-glance' && <div className="at-glance">
       <div className="at-glance-hero"><div className="radar"><span/><span/><span/></div><Logo/><p>A Saudi fintech platform that brings business financing and investment together.</p></div>
@@ -171,7 +171,7 @@ function RenderSlide({ slide, index, total, onSources }) {
 
     {slide.type === 'leadership' && <div className="leadership"><div className="ceo"><Person src="ceo.webp" name="Abdulaziz Aladwani"/><div><span>FOUNDER & CEO</span><strong>Abdulaziz Aladwani</strong></div></div><div className="leadership-tree"/><div className="executive-row">{executives.map(([n,r,p])=><article key={n}><Person src={p} name={n}/><div><strong>{n}</strong><span>{r}</span></div></article>)}</div></div>}
 
-    {slide.type === 'group' && <div className="group"><div className="group-origin"><div className="group-rings"/><Logo/><span>Shared roots</span></div><div className="group-line"/><article className="company company--manafa"><Logo/><strong>Manafa</strong><p>Business financing and investment</p></article><article className="company company--sukuk"><img src={`${A2}sukuk.svg`} alt="Sukuk Capital"/><strong>Sukuk Capital</strong><p>Debt instruments and capital markets</p></article><article className="company company--abyan"><img src={`${A2}abyan.svg`} alt="Abyan Capital"/><strong>Abyan Capital</strong><p>Digital asset management</p></article><article className="company company--tech"><Logo/><strong>Manafa Technologies</strong><p>Technology delivery from Pakistan</p></article></div>}
+    {slide.type === 'group' && <div className="group"><div className="group-origin"><div className="group-rings"/><Logo/><span>Shared roots</span></div><div className="group-line"/><article className="company company--manafa"><Logo/><strong>Manafa</strong><p>The regulated platform for business financing and capital participation.</p></article><article className="company company--sukuk"><img src={`${A2}sukuk.svg`} alt="Sukuk Capital"/><strong>Sukuk Capital</strong><p>A sister company focused on debt instruments and capital-market opportunities.</p></article><article className="company company--abyan"><img src={`${A2}abyan.svg`} alt="Abyan Capital"/><strong>Abyan Capital</strong><p>A sister company providing digital investment and asset-management experiences.</p></article><article className="company company--tech"><Logo/><strong>Manafa Technologies</strong><p>The Pakistan-based engineering organisation extending Manafa’s technology capacity.</p></article></div>}
 
     {slide.type === 'partners' && <div className="partners"><div className="investor-band"><span>INVESTORS</span><div className="logo-tile logo-tile--dark"><img src={`${A3}stv.png`} alt="STV"/></div><div className="logo-tile"><img src={`${A3}waed.jpg`} alt="Wa'ed Ventures"/></div></div><div className="partner-field"><span>STRATEGIC PARTNERS</span>{[['kafalah.png','Kafalah'],['mudad.png','Mudad'],['sme-bank.png','SME Bank'],['cultural-fund.jpeg','Cultural Development Fund'],['tdf.png','Tourism Development Fund'],['sidf.jpg','SIDF']].map(([src,name],i)=><div className="logo-tile" key={name} style={{'--i':i}}><img src={`${A3}${src}`} alt={name}/></div>)}</div></div>}
 
