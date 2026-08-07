@@ -1,19 +1,28 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowLeft, ArrowRight, BookOpen, ChevronRight, Expand, Menu, Presentation, UserRound, X } from 'lucide-react'
+import {
+  ArrowLeft, ArrowRight, BadgeCheck, Banknote, BookOpen, BriefcaseBusiness,
+  Building2, CalendarDays, CheckCircle2, ChevronRight, CircleDollarSign,
+  ClipboardCheck, Code2, Database, Expand, Factory, FileCheck2, GitBranch,
+  GraduationCap, HandCoins, Handshake, Headphones, Landmark, Layers3,
+  LockKeyhole, Megaphone, Menu, MessageCircle, Network, Palette, Presentation,
+  ReceiptText, Rocket, Scale, Search, ShieldCheck, Store, UserCheck, UserRound,
+  Users, WalletCards, Waypoints, X,
+} from 'lucide-react'
 import './styles.css'
 
 const A2 = `${import.meta.env.BASE_URL}assets/v2/`
 const A3 = `${import.meta.env.BASE_URL}assets/v3/`
+const A4 = `${import.meta.env.BASE_URL}assets/v4/`
 
 const products = [
-  ['01', 'Invoice Financing', 'invoice.svg'],
-  ['02', 'Letter of Guarantee', 'lg.svg'],
-  ['03', 'Purchase Order Financing', 'po.svg'],
-  ['04', 'Working Capital', 'working-capital.svg'],
-  ['05', 'Payroll Financing', 'payroll.svg'],
-  ['06', 'Real Estate Financing', 'real-estate.svg'],
-  ['07', 'Supply Chain Financing', 'scf.svg'],
+  { name:'Invoice Financing', icon:'invoice.svg', copy:'Turn approved invoices into working cash before the customer pays.', tone:'blue' },
+  { name:'Letter of Guarantee', icon:'lg.svg', copy:'Secure the guarantees required to win or execute a contract.', tone:'ice' },
+  { name:'Purchase Order Financing', icon:'po.svg', copy:'Fund the fulfilment of a confirmed purchase order.', tone:'violet' },
+  { name:'Working Capital', icon:'working-capital.svg', copy:'Cover day-to-day operating needs across the cash cycle.', tone:'sky' },
+  { name:'Payroll Financing', icon:'payroll.svg', copy:'Bridge critical salary commitments when cash timing is tight.', tone:'lavender' },
+  { name:'Real Estate Financing', icon:'real-estate.svg', copy:'Finance eligible property acquisition or development needs.', tone:'paper' },
+  { name:'Supply Chain Financing', icon:'scf.svg', copy:'Enable early supplier payment inside buyer-led programs.', tone:'royal', wide:true },
 ]
 
 const executives = [
@@ -26,53 +35,63 @@ const executives = [
 ]
 
 const team = [
-  ['Mohammed Alghofaily', 'Product Lead / UX'],
-  ['Fahad Aldossari', 'Product Lead'],
-  ['Bandar Alarifi', 'Product Lead'],
-  ['Alma Alfowzan', 'Business Analyst'],
-  ['Mohammed Alasaker', 'Business Analyst'],
-  ['Noura Aljmhoor', 'Business Analyst'],
-  ['Danah Alsuhaibani', 'Business Analyst'],
-  ['Norah Alahmed', 'Business Analyst'],
-  ['Abdulwahab Alghamdi', 'Business Analyst'],
-  ['Najla Alharthi', 'UX/UI Designer'],
+  ['Mohammed Alghofaily', 'Product Lead / UX'], ['Fahad Aldossari', 'Product Lead'],
+  ['Bandar Alarifi', 'Product Lead'], ['Alma Alfowzan', 'Business Analyst'],
+  ['Mohammed Alasaker', 'Business Analyst'], ['Noura Aljmhoor', 'Business Analyst'],
+  ['Danah Alsuhaibani', 'Business Analyst'], ['Norah Alahmed', 'Business Analyst'],
+  ['Abdulwahab Alghamdi', 'Business Analyst'], ['Najla Alharthi', 'UX/UI Designer'],
   ['Nouf Alkernass', 'UX/UI Designer'],
 ]
 
 const departments = [
-  'Credit', 'Compliance, Risk & BCM', 'Legal & Governance', 'Business Operations',
-  'Portfolio Management', 'Collections', 'Customer Care', 'Technology & Engineering',
-  'Cybersecurity', 'Finance & Treasury', 'Human Resources', 'Business Development & Partnership',
-  'Marketing & Branding Communication', 'Digital Investors', 'Digital Experience', 'Internal Audit',
+  ['Credit', CircleDollarSign], ['Compliance, Risk & BCM', ShieldCheck],
+  ['Legal & Governance', Scale], ['Business Operations', BriefcaseBusiness],
+  ['Portfolio Management', WalletCards], ['Collections', HandCoins],
+  ['Customer Care', Headphones], ['Technology & Engineering', Code2],
+  ['Cybersecurity', LockKeyhole], ['Finance & Treasury', Banknote],
+  ['Human Resources', UserCheck], ['Business Development & Partnership', Handshake],
+  ['Marketing & Branding Communication', Megaphone], ['Digital Investors', Users],
+  ['Digital Experience', Palette], ['Internal Audit', ClipboardCheck],
+]
+
+const milestones = [
+  { year:'2018', title:'Manafa founded', icon:Rocket, copy:'The company begins building new ways for businesses to access financing.' },
+  { year:'2022', title:'Debt crowdfunding licence', icon:FileCheck2, copy:'Manafa receives its full licence from the Saudi Central Bank.' },
+  { year:'2022', title:'SAR 106M Series A', icon:CircleDollarSign, copy:'STV and Wa’ed Ventures back the next stage of growth.', image:'series-a.jpg' },
+  { year:'2023', title:'Saudi Unicorns', icon:BadgeCheck, copy:'Manafa is selected among Saudi Arabia’s high-potential technology companies.', image:'saudi-unicorns.png', imageSet:'v3' },
+  { year:'2024–25', title:'National SCF programs', icon:Handshake, copy:'Aramco and Saudi Electricity Company mark a new scale of supply-chain financing.', image:'aramco-signing.webp' },
+  { year:'2025', title:'SCF Regulatory Sandbox', icon:ShieldCheck, copy:'SAMA permits Manafa to test supply-chain financing solutions.' },
 ]
 
 const slides = [
   { id:'welcome', type:'cover', title:'Welcome to Manafa', subtitle:'Digital Business onboarding' },
-  { id:'manafa-section', type:'section', chapter:'01', title:'Manafa', subtitle:'Company, business model and people' },
-  { id:'at-a-glance', type:'brand-flow', title:'Manafa at a glance', body:'Manafa is a Saudi fintech platform for debt crowdfunding and business financing.', sources:[['Manafa — About','https://manafa.sa/about']] },
-  { id:'business-lines', type:'business-lines', title:'Two business lines, different participants' },
-  { id:'company-story', type:'storyline', title:'Company milestones', points:[['2018','Manafa founded'],['2022','Full debt crowdfunding licence'],['2022','SAR 106M Series A'],['2023','Saudi Unicorns Program'],['2024–25','Aramco and SEC SCF programs'],['2025','SCF Regulatory Sandbox']] },
-  { id:'regulation', type:'regulation', title:'Regulatory position', sources:[['SAMA — debt crowdfunding licence','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-801.aspx'],['SAMA — SCF Regulatory Sandbox','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-1104.aspx']] },
-  { id:'growth-milestones', type:'growth', title:'Series A and Saudi Unicorns', sources:[['STV — Investing in Manafa','https://stv.vc/blog/en/2022/12/28/investing-in-manafa-enabling-sme-financing-and-unlocking-new-asset-classes-to-retail-and-institutional-investors'],['Saudi Unicorns Program','https://hub.misk.org.sa/programs/entrepreneurship/saudi-unicorns/']] },
-  { id:'national-programs', type:'programs', title:'National-scale SCF programs', sources:[['Aramco — SCF announcement','https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],['Manafa — SEC SCF announcement','https://www.linkedin.com/posts/manafa-co_fii9-activity-7389028836077678592-D87w']] },
-  { id:'metrics', type:'metrics', title:'Manafa today', metrics:[['3.2B+','SAR total financing'],['200K+','Users'],['190+','Team members'],['12+','Partnerships']], sources:[['Manafa — About','https://manafa.sa/about']] },
-  { id:'leadership', type:'leadership', title:'Executive team' },
-  { id:'group', type:'group', title:'Manafa companies and technology delivery' },
-  { id:'partners', type:'partners', title:'Investors and strategic partners' },
-  { id:'business-section', type:'section', chapter:'02', title:'Business and products', subtitle:'Products, lifecycle and digital channels', accent:'purple' },
-  { id:'products', type:'products', title:'Financing products' },
-  { id:'lifecycle', type:'lifecycle', title:'Financing lifecycle', steps:[['01','Onboard'],['02','Request'],['03','Assess'],['04','Approve'],['05','Fund'],['06','Service']] },
-  { id:'channels', type:'channels', title:'Digital channels and users' },
-  { id:'organization-section', type:'section', chapter:'03', title:'Organization and Digital Business', subtitle:'Departments, platforms, people and delivery', accent:'green' },
-  { id:'departments', type:'departments', title:'Manafa departments' },
-  { id:'product-org', type:'product-org', title:'Digital Product organization' },
-  { id:'digital-business', type:'digital-business', title:'Digital Business scope' },
-  { id:'platform-strategy', type:'platform-strategy', title:'Manafa Platform Strategy' },
-  { id:'delivery', type:'delivery', title:'From demand to production' },
-  { id:'team', type:'team', title:'Digital Business team' },
-  { id:'ways-of-working', type:'ways', title:'How we work' },
-  { id:'tools', type:'tools', title:'Tools and company essentials' },
-  { id:'thank-you', type:'thanks', title:'Thank you', subtitle:'Questions?' },
+  { id:'manafa-section', type:'section', chapter:'01', title:'Manafa', subtitle:'The company, its business and the people behind it' },
+  { id:'at-a-glance', type:'at-glance', title:'Manafa at a glance', sources:[['Manafa — About','https://manafa.sa/about']] },
+  { id:'business-model', type:'business-model', title:'How Manafa connects capital with business needs' },
+  { id:'company-story', type:'milestones', title:'How Manafa grew into a national financing platform' },
+  { id:'regulation', type:'regulation', title:'Two regulatory milestones shaped the business', sources:[['SAMA — debt crowdfunding licence','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-801.aspx'],['SAMA — SCF Regulatory Sandbox','https://www.sama.gov.sa/en-us/mediacenter/news/pages/news-1104.aspx']] },
+  { id:'growth-milestones', type:'growth', title:'Investment and national recognition accelerated the journey', sources:[['STV — Investing in Manafa','https://stv.vc/blog/en/2022/12/28/investing-in-manafa-enabling-sme-financing-and-unlocking-new-asset-classes-to-retail-and-institutional-investors'],['Saudi Unicorns Program','https://hub.misk.org.sa/programs/entrepreneurship/saudi-unicorns/']] },
+  { id:'national-programs', type:'programs', title:'SCF partnerships moved Manafa to national scale', sources:[['Aramco — SCF announcement','https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],['Manafa — SEC SCF announcement','https://www.linkedin.com/posts/manafa-co_fii9-activity-7389028836077678592-D87w']] },
+  { id:'metrics', type:'metrics', title:'Manafa today', sources:[['Manafa — Achievements','https://manafa.sa/achievement']] },
+  { id:'leadership', type:'leadership', title:'The executive team' },
+  { id:'group', type:'group', title:'A growing group with shared roots' },
+  { id:'partners', type:'partners', title:'The ecosystem around Manafa' },
+  { id:'business-section', type:'section', chapter:'02', title:'Business and products', subtitle:'The financing portfolio and the journey behind every request', accent:'violet' },
+  { id:'products', type:'products', title:'Seven ways Manafa finances businesses' },
+  { id:'lifecycle', type:'lifecycle', title:'What happens from application to closure' },
+  { id:'digital-section', type:'section', chapter:'03', title:'Digital Business', subtitle:'The stakeholders, team, platforms and delivery model', accent:'teal' },
+  { id:'departments', type:'departments', title:'The departments we work with' },
+  { id:'product-org', type:'product-org', title:'Where Digital Product sits' },
+  { id:'team', type:'team', title:'Meet the Digital Business team' },
+  { id:'digital-business', type:'digital-business', title:'What Digital Business owns' },
+  { id:'strategy-problem', type:'strategy-problem', title:'Why the current product model must change' },
+  { id:'strategy-method', type:'strategy-method', title:'How the target structure was developed' },
+  { id:'platform-strategy', type:'platform-strategy', title:'From one Admin Portal to a modular product suite' },
+  { id:'platform-progress', type:'platform-progress', title:'The transition is already underway' },
+  { id:'delivery', type:'delivery', title:'How a demand becomes a production release' },
+  { id:'ways-of-working', type:'ways', title:'How we work together' },
+  { id:'tools', type:'tools', title:'Your daily toolkit and company essentials' },
+  { id:'thank-you', type:'thanks', title:'Welcome aboard', subtitle:'Questions?' },
 ]
 
 function Logo({ inverse=false }) {
@@ -87,75 +106,130 @@ function SourceButton({ slide, onOpen }) {
   return slide.sources?.length ? <button className="source-button" onClick={onOpen}>Sources</button> : null
 }
 
-function Chrome({ slide, index, total, dark=false }) {
+function Chrome({ index, total, dark=false }) {
   return <><Logo inverse={dark}/><div className="counter">{String(index+1).padStart(2,'0')} / {total}</div></>
 }
 
-function RenderSlide({ slide, index, total, onSources }) {
-  if (slide.type === 'cover') return <section className="slide cover"><Logo/><div className="cover-wordmark" aria-hidden="true">MANAFA</div><div className="cover-copy"><h1>{slide.title}</h1><span/><p>{slide.subtitle}</p></div><div className="counter">01 / {total}</div></section>
+function IconBubble({ Icon, tone='blue' }) {
+  return <span className={`icon-bubble icon-bubble--${tone}`}><Icon/></span>
+}
 
-  if (slide.type === 'section') return <section className={`slide section ${slide.accent?`section--${slide.accent}`:''}`}><Logo inverse/><div className="section-index">{slide.chapter}</div><div className="section-copy"><h1>{slide.title}</h1><span/><p>{slide.subtitle}</p></div><div className="counter">{String(index+1).padStart(2,'0')} / {total}</div></section>
+function RenderSlide({ slide, index, total, onSources }) {
+  if (slide.type === 'cover') return <section className="slide cover"><Logo inverse/><div className="cover-rings"/><div className="cover-copy"><h1>{slide.title}</h1><p>{slide.subtitle}</p><span>For the people shaping Manafa’s digital products.</span></div><div className="counter">01 / {total}</div></section>
+
+  if (slide.type === 'section') return <section className={`slide section ${slide.accent?`section--${slide.accent}`:''}`}><Logo inverse/><div className="section-rings"/><div className="section-index">{slide.chapter}</div><div className="section-copy"><h1>{slide.title}</h1><p>{slide.subtitle}</p></div><div className="counter">{String(index+1).padStart(2,'0')} / {total}</div></section>
 
   const dark = ['metrics','thanks'].includes(slide.type)
   return <section className={`slide content content--${slide.type}${dark?' dark':''}`}>
-    <Chrome slide={slide} index={index} total={total} dark={dark}/>
+    <Chrome index={index} total={total} dark={dark}/>
     <header className="content-header"><h1>{slide.title}</h1><div/></header>
 
-    {slide.type === 'brand-flow' && <div className="brand-flow">
-      <div className="brand-copy"><img src={`${A2}manafa-logo.svg`} alt="Manafa"/><p>{slide.body}</p></div>
-      <div className="flow-visual"><div className="flow-line"/><div className="flow-party flow-party--left"><strong>Borrowers</strong><span>Businesses seeking financing</span></div><div className="flow-core"><img src={`${A2}manafa-logo.svg`} alt=""/></div><div className="flow-party flow-party--right"><strong>Investors</strong><span>Individuals and institutions providing capital</span></div><i className="flow-dot flow-dot--one"/><i className="flow-dot flow-dot--two"/></div>
+    {slide.type === 'at-glance' && <div className="at-glance">
+      <div className="at-glance-hero"><div className="radar"><span/><span/><span/></div><Logo/><p>A Saudi fintech platform that brings business financing and investment together.</p></div>
+      <div className="glance-facts">
+        <article><IconBubble Icon={Building2}/><div><strong>Business financing</strong><p>Digital journeys for companies seeking finance across seven products.</p></div></article>
+        <article><IconBubble Icon={Users} tone="violet"/><div><strong>Capital participation</strong><p>Individuals and institutions participate through investor and funder experiences.</p></div></article>
+        <article><IconBubble Icon={Network} tone="teal"/><div><strong>One connected operation</strong><p>Credit, operations, controls and technology coordinate behind every journey.</p></div></article>
+      </div>
     </div>}
 
-    {slide.type === 'business-lines' && <div className="business-lines">
-      <article><div className="line-label">CROWDLENDING</div><div className="actor-row"><strong>Borrower</strong><span>→</span><img src={`${A2}manafa-logo.svg`} alt="Manafa"/><span>←</span><strong>Investor</strong></div><p>Businesses request financing. Investors participate in financing opportunities.</p></article>
-      <article><div className="line-label">SUPPLY CHAIN FINANCING</div><div className="actor-row actor-row--scf"><strong>Buyer</strong><span>·</span><strong>Supplier <small>(Borrower)</small></strong><span>·</span><strong>Funder</strong></div><p>Buyer-led programs connect approved supplier invoices with institutional funding.</p></article>
+    {slide.type === 'business-model' && <div className="business-model">
+      <div className="model-orbit model-orbit--borrower"><IconBubble Icon={Building2}/><strong>Borrowers</strong><span>Businesses seeking financing</span></div>
+      <div className="model-orbit model-orbit--investor"><IconBubble Icon={Users} tone="teal"/><strong>Investors</strong><span>Individuals and institutions providing capital</span></div>
+      <div className="model-orbit model-orbit--buyer"><IconBubble Icon={Store} tone="violet"/><strong>Buyers</strong><span>Anchor companies running SCF programs</span></div>
+      <div className="model-orbit model-orbit--funder"><IconBubble Icon={Landmark} tone="coral"/><strong>Funders</strong><span>Institutions funding SCF opportunities</span></div>
+      <div className="model-core"><Logo inverse/><small>DIGITAL PLATFORM</small></div>
+      <svg viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true"><path d="M180 90 C360 70 360 200 500 210"/><path d="M820 90 C640 70 640 200 500 210"/><path d="M180 330 C350 350 360 230 500 210"/><path d="M820 330 C650 350 640 230 500 210"/></svg>
+      <div className="model-note"><strong>One platform</strong><span>Crowdlending and supply-chain financing use different relationships, but share the same operating foundation.</span></div>
     </div>}
 
-    {slide.type === 'storyline' && <div className="storyline"><svg viewBox="0 0 1200 180" preserveAspectRatio="none"><path d="M20 130 C180 15 340 160 520 80 S900 20 1180 90"/><path className="story-path-active" d="M20 130 C180 15 340 160 520 80 S900 20 1180 90"/></svg>{slide.points.map(([y,t],i)=><article key={y+t} style={{'--i':i}}><strong>{y}</strong><span>{t}</span></article>)}</div>}
+    {slide.type === 'milestones' && <div className="milestones">
+      <div className="milestone-wave"/>
+      {milestones.map((m,i)=>{const Icon=m.icon;const src=m.image?`${m.imageSet==='v3'?A3:A2}${m.image}`:null;return <article key={`${m.year}-${m.title}`} style={{'--i':i}} className={src?'has-image':''}>{src&&<img src={src} alt=""/>}<div className="milestone-year">{m.year}</div><IconBubble Icon={Icon} tone={i>3?'teal':i>1?'violet':'blue'}/><h2>{m.title}</h2><p>{m.copy}</p></article>})}
+    </div>}
 
-    {slide.type === 'regulation' && <div className="regulation"><div className="regulation-mark"><img src={`${A3}sama.png`} alt="Saudi Central Bank"/></div><div className="regulation-track"><article><strong>2022</strong><h2>Debt Crowdfunding Licence</h2><p>Full licence from the Saudi Central Bank.</p></article><div className="regulation-line"/><article><strong>2025</strong><h2>SCF Regulatory Sandbox</h2><p>Permission to test supply-chain financing solutions.</p></article></div></div>}
+    {slide.type === 'regulation' && <div className="regulation">
+      <div className="sama-mark"><img src={`${A3}sama.png`} alt="Saudi Central Bank"/><span>Saudi Central Bank</span></div>
+      <div className="reg-cards">
+        <article><div className="reg-year">2022</div><IconBubble Icon={FileCheck2}/><h2>Debt Crowdfunding Licence</h2><p>The full licence established Manafa’s regulated crowdlending activity.</p><footer>Licensed activity</footer></article>
+        <div className="reg-bridge"><span>regulated growth</span><i/></div>
+        <article><div className="reg-year">2025</div><IconBubble Icon={ShieldCheck} tone="teal"/><h2>SCF Regulatory Sandbox</h2><p>Permission to test supply-chain financing solutions created the next regulated path.</p><footer>Controlled experimentation</footer></article>
+      </div>
+    </div>}
 
-    {slide.type === 'growth' && <div className="growth"><figure><img src={`${A2}series-a.jpg`} alt="Manafa Series A team"/><figcaption><strong>SAR 106M</strong><span>Series A · December 2022</span><div className="investor-logos"><span className="stv"><img src={`${A3}stv.png`} alt="STV"/></span><img src={`${A3}waed.jpg`} alt="Wa'ed Ventures"/></div></figcaption></figure><figure><img src={`${A3}saudi-unicorns.png`} alt="Saudi Unicorns program and partners"/><figcaption><strong>Saudi Unicorns</strong><span>Selected in 2023</span></figcaption></figure></div>}
+    {slide.type === 'growth' && <div className="growth">
+      <article className="growth-story growth-story--series"><img src={`${A2}series-a.jpg`} alt="Manafa Series A team"/><div className="growth-copy"><span>DECEMBER 2022</span><h2>SAR 106 million Series A</h2><p>Led by STV and Wa’ed Ventures, the round supported technology, talent and expansion.</p><div className="mini-logos"><span className="stv"><img src={`${A3}stv.png`} alt="STV"/></span><img src={`${A3}waed.jpg`} alt="Wa'ed Ventures"/></div></div></article>
+      <article className="growth-story growth-story--unicorn"><img src={`${A3}saudi-unicorns.png`} alt="Saudi Unicorns Program"/><div className="growth-copy"><span>SELECTED IN 2023</span><h2>Saudi Unicorns Program</h2><p>Selection placed Manafa among companies with the potential to become globally significant Saudi technology businesses.</p></div></article>
+    </div>}
 
-    {slide.type === 'programs' && <div className="programs"><figure><img src={`${A2}aramco-signing.webp`} alt="Aramco SCF signing"/><figcaption><strong>Aramco</strong><span>FII8 · 2024</span></figcaption></figure><figure><img src={`${A2}sec-signing.jpg`} alt="Saudi Electricity Company SCF signing"/><figcaption><strong>Saudi Electricity Company</strong><span>FII9 · 2025</span></figcaption></figure></div>}
+    {slide.type === 'programs' && <div className="programs">
+      <article><figure><img src={`${A2}aramco-signing.webp`} alt="Aramco SCF signing"/></figure><div><span>FII8 · 2024</span><h2>Aramco</h2><p>Manafa joined Aramco, SIDF and Taulia in a wide-reaching supply-chain financing solution designed to support Aramco suppliers.</p><strong>Landmark enterprise SCF program</strong></div></article>
+      <article><figure><img src={`${A2}sec-signing.jpg`} alt="Saudi Electricity Company SCF signing"/></figure><div><span>FII9 · 2025</span><h2>Saudi Electricity Company</h2><p>The model expanded to a second national anchor, extending financing coverage across the electricity supply chain.</p><strong>Expansion of the national model</strong></div></article>
+    </div>}
 
-    {slide.type === 'metrics' && <div className="metrics">{slide.metrics.map(([v,l])=><article key={l}><strong>{v}</strong><span>{l}</span></article>)}</div>}
+    {slide.type === 'metrics' && <div className="metrics-scene"><div className="metric-rings"/><div className="metric-primary"><strong>3.2B+</strong><span>SAR total financing</span></div><div className="metric-secondary"><article><Users/><strong>200K+</strong><span>users</span></article><article><BriefcaseBusiness/><strong>190+</strong><span>team members</span></article><article><Handshake/><strong>12+</strong><span>partnerships</span></article></div><p>Public figures shown on Manafa’s achievement page.</p></div>}
 
-    {slide.type === 'leadership' && <div className="leadership"><div className="ceo"><Person src="ceo.webp" name="Abdulaziz Aladwani"/><div><strong>Abdulaziz Aladwani</strong><span>Founder & CEO</span></div></div><div className="leadership-line"/><div className="executive-row">{executives.map(([n,r,p])=><article key={n}><Person src={p} name={n}/><strong>{n}</strong><span>{r}</span></article>)}</div></div>}
+    {slide.type === 'leadership' && <div className="leadership"><div className="ceo"><Person src="ceo.webp" name="Abdulaziz Aladwani"/><div><span>FOUNDER & CEO</span><strong>Abdulaziz Aladwani</strong></div></div><div className="leadership-tree"/><div className="executive-row">{executives.map(([n,r,p])=><article key={n}><Person src={p} name={n}/><div><strong>{n}</strong><span>{r}</span></div></article>)}</div></div>}
 
-    {slide.type === 'group' && <div className="group"><div className="group-axis"><i/><i/><i/></div><article><img src={`${A2}manafa-logo.svg`} alt="Manafa"/><span>Business financing and investment</span></article><article className="group-dark"><img src={`${A2}sukuk.svg`} alt="Sukuk Capital"/><span>Debt instruments and capital markets</span></article><article><img src={`${A2}abyan.svg`} alt="Abyan Capital"/><span>Digital asset management</span></article><article className="group-tech"><img src={`${A3}manafa-technologies.jpg`} alt="Manafa Technologies team"/><div><strong>Manafa Technologies</strong><span>Technology delivery · Pakistan</span></div></article></div>}
+    {slide.type === 'group' && <div className="group"><div className="group-origin"><div className="group-rings"/><Logo/><span>Shared roots</span></div><div className="group-line"/><article className="company company--manafa"><Logo/><strong>Manafa</strong><p>Business financing and investment</p></article><article className="company company--sukuk"><img src={`${A2}sukuk.svg`} alt="Sukuk Capital"/><strong>Sukuk Capital</strong><p>Debt instruments and capital markets</p></article><article className="company company--abyan"><img src={`${A2}abyan.svg`} alt="Abyan Capital"/><strong>Abyan Capital</strong><p>Digital asset management</p></article><article className="company company--tech"><Logo/><strong>Manafa Technologies</strong><p>Technology delivery from Pakistan</p></article></div>}
 
-    {slide.type === 'partners' && <div className="partners"><div className="partner-leads"><span className="stv"><img src={`${A3}stv.png`} alt="STV"/></span><img src={`${A3}waed.jpg`} alt="Wa'ed Ventures"/></div><div className="partner-divider"><span>Strategic partners</span></div><div className="partner-grid"><img src={`${A3}kafalah.png`} alt="Kafalah"/><img src={`${A3}mudad.png`} alt="Mudad"/><img src={`${A3}sme-bank.png`} alt="SME Bank"/><img src={`${A3}cultural-fund.jpeg`} alt="Cultural Development Fund"/><img src={`${A3}tdf.png`} alt="Tourism Development Fund"/><img src={`${A3}sidf.jpg`} alt="SIDF"/></div></div>}
+    {slide.type === 'partners' && <div className="partners"><div className="investor-band"><span>INVESTORS</span><div className="logo-tile logo-tile--dark"><img src={`${A3}stv.png`} alt="STV"/></div><div className="logo-tile"><img src={`${A3}waed.jpg`} alt="Wa'ed Ventures"/></div></div><div className="partner-field"><span>STRATEGIC PARTNERS</span>{[['kafalah.png','Kafalah'],['mudad.png','Mudad'],['sme-bank.png','SME Bank'],['cultural-fund.jpeg','Cultural Development Fund'],['tdf.png','Tourism Development Fund'],['sidf.jpg','SIDF']].map(([src,name],i)=><div className="logo-tile" key={name} style={{'--i':i}}><img src={`${A3}${src}`} alt={name}/></div>)}</div></div>}
 
-    {slide.type === 'products' && <div className="products"><div className="product-line"/>{products.map(([n,name,icon],i)=><article key={name} style={{'--i':i}}><div><img src={`${A2}${icon}`} alt=""/></div><span>{n}</span><strong>{name}</strong></article>)}</div>}
+    {slide.type === 'products' && <div className="products">{products.map((p,i)=><article key={p.name} className={`product product--${p.tone}${p.wide?' product--wide':''}`} style={{'--i':i}}><img src={`${A2}${p.icon}`} alt=""/><div><h2>{p.name}</h2><p>{p.copy}</p></div></article>)}<footer><span>Different business needs.</span><strong>One financing platform.</strong></footer></div>}
 
-    {slide.type === 'lifecycle' && <div className="lifecycle"><div className="lifecycle-line"><i/></div>{slide.steps.map(([n,name],i)=><article key={n} style={{'--i':i}}><strong>{n}</strong><span>{name}</span></article>)}</div>}
+    {slide.type === 'lifecycle' && <div className="lifecycle"><div className="journey-rail"><span>BUSINESS</span><span>MANAFA</span><span>CAPITAL</span></div><div className="journey-stages">{[
+      ['01','Company onboarding','Register the company and complete identity, ownership and eligibility information.',Building2,'business'],
+      ['02','Financing request','Choose a product, enter the need and provide the required documents.',ReceiptText,'business'],
+      ['03','Credit assessment','Review financials, eligibility, risk and the proposed financing structure.',Search,'manafa'],
+      ['04','Offer and approval','Confirm the approved amount, pricing, conditions and acceptance.',FileCheck2,'manafa'],
+      ['05','Funding and disbursement','Investors or funders allocate capital and the approved financing is disbursed.',HandCoins,'capital'],
+      ['06','Servicing and closure','Track repayments, settlement, collections and final closure.',CheckCircle2,'manafa'],
+    ].map(([n,t,c,Icon,lane])=><article key={n} className={`lane-${lane}`}><b>{n}</b><IconBubble Icon={Icon} tone={lane==='capital'?'teal':lane==='manafa'?'violet':'blue'}/><h2>{t}</h2><p>{c}</p></article>)}</div></div>}
 
-    {slide.type === 'channels' && <div className="channels"><div className="channel-main"><span>CORE MARKETPLACE</span><div><strong>Borrower Channel</strong><i>↔</i><img src={`${A2}manafa-logo.svg`} alt="Manafa"/><i>↔</i><strong>Investor Channel</strong></div></div><div className="channel-scf"><span>SCF PROGRAMS</span><div><strong>Buyer Channel</strong><i>→</i><strong>Supplier / Borrower</strong><i>←</i><strong>Funder Channel</strong></div></div><div className="channel-embedded"><strong>Embedded Channel</strong><span>API-based distribution and partner integrations</span></div></div>}
+    {slide.type === 'departments' && <div className="departments">{departments.map(([name,Icon],i)=><article key={name} style={{'--i':i}}><IconBubble Icon={Icon} tone={i%4===1?'violet':i%4===2?'teal':i%4===3?'coral':'blue'}/><strong>{name}</strong></article>)}</div>}
 
-    {slide.type === 'departments' && <div className="departments">{departments.map((d,i)=><span key={d} style={{'--i':i}}>{d}</span>)}</div>}
+    {slide.type === 'product-org' && <div className="product-org"><div className="org-head"><Person src="shahram.webp" name="Mohammed Shahram Javid"/><div><span>CHIEF TECHNOLOGY OFFICER</span><strong>Mohammed Shahram Javid</strong></div></div><div className="org-connector"/><div className="org-branches"><article><Person src="abdullah.webp" name="Abdullah Almazyad"/><div><span>PRODUCT DIRECTOR</span><h2>Abdullah Almazyad</h2><strong>Digital Business</strong></div></article><article><div className="person-placeholder"><UserRound/></div><div><span>PRODUCT DIRECTOR</span><h2>Raghad</h2><strong>Digital Investors & Digital Experience</strong></div></article></div></div>}
 
-    {slide.type === 'product-org' && <div className="product-org"><div className="org-head"><Person src="shahram.webp" name="Mohammed Shahram Javid"/><div><strong>Mohammed Shahram Javid</strong><span>Chief Technology Officer</span></div></div><div className="org-trunk"/><div className="org-branches"><article><Person src="abdullah.webp" name="Abdullah Almazyad"/><h2>Abdullah Almazyad</h2><p>Product Director</p><strong>Digital Business</strong></article><article><div className="person-placeholder"><UserRound/></div><h2>Raghad</h2><p>Product Director</p><strong>Digital Investors</strong><strong>Digital Experience</strong></article></div></div>}
+    {slide.type === 'team' && <div className="team"><div className="team-lead"><Person src="abdullah.webp" name="Abdullah Almazyad"/><div><span>PRODUCT DIRECTOR</span><strong>Abdullah Almazyad</strong><p>Digital Business</p></div></div><div className="team-members">{team.map(([n,r],i)=><article key={n} style={{'--i':i}}><div className="initials">{n.split(' ').map(x=>x[0]).slice(0,2).join('')}</div><div><strong>{n}</strong><span>{r}</span></div></article>)}</div></div>}
 
-    {slide.type === 'digital-business' && <div className="digital-business"><div className="db-lead"><Person src="abdullah.webp" name="Abdullah Almazyad"/><div><strong>Abdullah Almazyad</strong><span>Product Director · Digital Business</span></div></div><div className="db-scope"><article><span>CHANNELS</span><strong>Borrower</strong><strong>Buyer</strong><strong>Funder</strong><strong>Embedded</strong></article><article><span>RESPONSIBILITY</span><p>Business-facing journeys and the back-office products and platforms supporting Manafa’s financing lines.</p></article></div></div>}
+    {slide.type === 'digital-business' && <div className="digital-business"><div className="scope-intro"><h2>We own the digital experience for Manafa’s business side.</h2><p>That includes the journeys customers use and the internal products that make financing possible.</p></div><div className="scope-map"><article className="scope-channel"><span>01 · BUSINESS CHANNELS</span><div><strong>Borrower</strong><strong>Buyer</strong><strong>Funder</strong><strong>Embedded</strong></div></article><div className="scope-bridge"><i/><i/><i/><i/></div><article className="scope-platform"><span>02 · BACK-OFFICE PRODUCTS</span><div><strong>Customer</strong><strong>Lending</strong><strong>Counterparty</strong><strong>Financial</strong></div></article></div></div>}
 
-    {slide.type === 'platform-strategy' && <div className="platform-strategy">{[
-      ['Customer Hub',['CRM','Client Lifecycle Management','Customer Service','Engagement Management','Transaction Management']],
-      ['Lending Hub',['Loan Origination','Loan Management & Collection']],
-      ['Financial Hub',['Ledger','Treasury','Invoice Management & Tax']],
-      ['Embedded Hub',['Developer Platform','ERP Middleware','API Platform']],
-      ['Shared Foundations',['Identity & Access Management','Log Management','Knowledge Management']],
-    ].map(([hub,items],i)=><article key={hub} style={{'--i':i}}><span>0{i+1}</span><h2>{hub}</h2>{items.map(x=><p key={x}>{x}</p>)}</article>)}</div>}
+    {slide.type === 'strategy-problem' && <div className="strategy-problem"><div className="monolith"><div className="monolith-orbits"/><strong>ADMIN</strong><span>One growing portal</span><i>Customer</i><i>Lending</i><i>Counterparty</i><i>Finance</i><i>Permissions</i></div><div className="problem-list">{[
+      ['Ownership','Most work sits under “Admin,” so domain outcomes are difficult to own.'],
+      ['Delivery','Incoming demands compete inside one large shared application.'],
+      ['Coupling','A change in one area can create dependencies and regression risk elsewhere.'],
+      ['Scale','Every new product and partner adds more complexity to the same portal.'],
+    ].map(([t,c],i)=><article key={t}><b>0{i+1}</b><div><h2>{t}</h2><p>{c}</p></div></article>)}</div><footer><strong>Direction</strong><span>Move from one broad Admin Portal to focused product domains with clear owners, roadmaps and measures.</span></footer></div>}
 
-    {slide.type === 'delivery' && <div className="delivery"><div className="delivery-path"/><article className="df"><div>DF</div><strong>Digital Factory</strong><span>Demand</span></article><article><div className="discovery-mark">01</div><strong>Discovery</strong><span>Problem, outcome and scope</span></article><article><img src={`${A3}confluence.svg`} alt="Confluence"/><strong>Confluence</strong><span>BRD when structured depth is needed</span></article><article><img src={`${A3}jira.svg`} alt="Jira"/><strong>Jira delivery</strong><span>Borrower · Embedded · Admin · Investor</span></article><article><div className="production-mark">✓</div><strong>Production</strong><span>Validate, release and learn</span></article></div>}
+    {slide.type === 'strategy-method' && <div className="strategy-method">{[
+      ['01','Internal discovery','Stakeholder workshops',Users,'Mapped operating problems, ownership gaps and dependencies.'],
+      ['02','External view','Market benchmarking',Search,'Compared how financial platforms separate channels, domains and shared capabilities.'],
+      ['03','Validation','Testing and refinement',Waypoints,'Tested alternative structures before defining the target suite.'],
+    ].map(([n,k,t,Icon,c],i)=><article key={n} style={{'--i':i}}><b>{n}</b><IconBubble Icon={Icon} tone={i===1?'teal':i===2?'coral':'violet'}/><span>{k}</span><h2>{t}</h2><p>{c}</p><footer>{i===2?'Output: target product structure':'Input to the strategy'}</footer></article>)}<div className="method-output"><strong>Discovery output</strong><span>A domain-led suite with explicit ownership and clear separation between audience-facing channels and internal platforms.</span></div></div>}
 
-    {slide.type === 'team' && <div className="team"><div className="team-lead"><Person src="abdullah.webp" name="Abdullah Almazyad"/><strong>Abdullah Almazyad</strong><span>Product Director</span><div className="team-line"/></div><div className="team-members">{team.map(([n,r])=><article key={n}><div className="initials">{n.split(' ').map(x=>x[0]).slice(0,2).join('')}</div><div><strong>{n}</strong><span>{r}</span></div></article>)}</div></div>}
+    {slide.type === 'platform-strategy' && <div className="platform-strategy"><div className="current-mass"><div className="mass-lines"/><strong>ADMIN</strong><span>Current state</span></div><div className="separation"><Layers3/><strong>Separate by audience and domain</strong></div><div className="suite-stack"><div className="suite-layer channels-layer"><span>01 · CHANNELS</span><div><strong>Borrower</strong><strong>Investor</strong><strong>Funder</strong><strong>Buyer</strong></div></div><div className="suite-layer hubs-layer"><span>02 · CORE HUBS</span><div><strong>Customer</strong><strong>Lending</strong><strong>Counterparty</strong><strong>Financial</strong></div></div><div className="suite-layer shared-layer"><span>03 · SHARED LIBRARY</span><div><strong>Identity & Access</strong><strong>Data & Insights</strong><strong>Knowledge</strong><strong>Logs</strong></div></div></div><aside><span>EMBEDDED</span><strong>Embedded Channel</strong><i/><strong>Embedded Hub</strong></aside><footer><strong>Target model</strong><span>Transition in progress—not every platform is live today.</span></footer></div>}
 
-    {slide.type === 'ways' && <div className="ways"><ol><li><span>01</span><strong>Direct communication</strong><p>Use the right channel and involve the relevant people early.</p></li><li><span>02</span><strong>Cross-functional delivery</strong><p>Product work moves with business, control and technology teams.</p></li><li><span>03</span><strong>Documented decisions</strong><p>Keep the demand, BRD and Jira delivery work connected.</p></li><li><span>04</span><strong>Early ownership</strong><p>Real work starts early, with guidance and feedback.</p></li></ol></div>}
+    {slide.type === 'platform-progress' && <div className="platform-progress"><div className="live-platforms"><span>LIVE OR IN DELIVERY</span>{[
+      ['CRM','Customer Hub','Live · enhancement roadmap active','live'],
+      ['Invoice Management','Financial Hub','Requirements and UX complete · development in progress','build'],
+      ['SCF FinOps','Counterparty Hub','Live baseline · next phase in preparation','live'],
+    ].map(([n,h,s,state])=><article key={n}><div><small>{h}</small><h2>{n}</h2></div><strong className={state}>{s}</strong></article>)}</div><div className="progress-board"><div className="progress-head"><span>PLATFORM</span><span>IDEATION</span><span>BA</span><span>DESIGN</span><span>BUILD</span><span>TEST</span><span>LIVE</span></div>{[
+      ['Client Lifecycle','design',2],['Buyer Management','analysis',1],['Funder Management','analysis',1],['Loan Origination (LOS)','ideation',0],['Loan Management & Collections','ideation',0],
+    ].map(([n,state,pos])=><article key={n}><strong>{n}</strong>{[0,1,2,3,4,5].map(i=><i key={i} className={i<pos?'done':i===pos?'current':''}/>)}<span>{state}</span></article>)}</div></div>}
 
-    {slide.type === 'tools' && <div className="tools"><div className="tool-row"><article><img src={`${A3}slack.svg`} alt="Slack"/><strong>Slack</strong><span>Team communication</span></article><article><img src={`${A3}microsoftoutlook.svg`} alt="Microsoft"/><strong>Microsoft 365</strong><span>Email and calendar</span></article><article><img src={`${A3}jira.svg`} alt="Jira"/><strong>Jira</strong><span>Delivery work</span></article><article><img src={`${A3}confluence.svg`} alt="Confluence"/><strong>Confluence</strong><span>Knowledge and BRDs</span></article><article><div className="hr-mark">HR</div><strong>HR System</strong><span>Attendance and leave</span></article></div><div className="essentials"><span>COMPANY ESSENTIALS</span><p>Leave requests</p><p>Attendance</p><p>Professional certificate support policy</p><p>Approved certificates list</p></div></div>}
+    {slide.type === 'delivery' && <div className="delivery"><div className="delivery-line"/>{[
+      ['01','Digital Factory','Capture the business demand and route it for prioritisation',null,'df'],
+      ['02','Discovery','Clarify the problem, outcome, users and solution scope',Search,'discovery'],
+      ['03','BRD when needed','Use the Confluence template for large or complex solutions',null,'confluence'],
+      ['04','Linked Jira delivery','Create work in Borrower, Embedded, Admin or Investor projects',null,'jira'],
+      ['05','Release and validate','Deliver through the release cycle, validate and learn',Rocket,'release'],
+    ].map(([n,t,c,Icon,kind])=><article key={n}><div className={`delivery-icon delivery-icon--${kind}`}>{kind==='df'?<b>DF</b>:kind==='confluence'?<img src={`${A3}confluence.svg`} alt="Confluence"/>:kind==='jira'?<img src={`${A3}jira.svg`} alt="Jira"/>:<Icon/>}</div><span>{n}</span><h2>{t}</h2><p>{c}</p></article>)}<footer><strong>Traceability matters</strong><span>The demand, analysis, BRD and delivery tasks should remain connected from idea to production.</span></footer></div>}
 
-    {slide.type === 'thanks' && <div className="thanks"><h2>{slide.subtitle}</h2><div/><p>Welcome to Digital Business.</p></div>}
+    {slide.type === 'ways' && <div className="ways"><div className="feature-workflow"><span>FEATURE WORKFLOW</span>{['Request or change request','Prioritisation and scoping','BA analysis, BRD and use cases','UX design, flows and hi-fi','BA and UX alignment','Grooming, development and QA','UAT and go-live'].map((x,i)=><article key={x}><b>0{i+1}</b><strong>{x}</strong></article>)}</div><div className="cadence"><span>RECURRING RHYTHM</span><article><IconBubble Icon={Users}/><div><h2>Team meeting</h2><p>Weekly priorities, updates and support across the team.</p></div></article><article><IconBubble Icon={CalendarDays} tone="violet"/><div><h2>Sprint grooming</h2><p>Align scope, estimates and acceptance before development.</p></div></article><article><IconBubble Icon={MessageCircle} tone="teal"/><div><h2>Direct feedback</h2><p>Ask early, document decisions and improve the work together.</p></div></article></div></div>}
+
+    {slide.type === 'tools' && <div className="tools"><div className="tool-grid"><article><img className="brand-icon slack-icon" src={`${A3}slack.svg`} alt="Slack"/><h2>Slack</h2><p>Team communication</p></article><article><img className="brand-icon" src={`${A3}microsoftoutlook.svg`} alt="Microsoft 365"/><h2>Microsoft 365</h2><p>Email and calendar</p></article><article><img className="brand-icon jira-icon" src={`${A3}jira.svg`} alt="Jira"/><h2>Jira</h2><p>Delivery work</p></article><article><img className="brand-icon confluence-icon" src={`${A3}confluence.svg`} alt="Confluence"/><h2>Confluence</h2><p>Knowledge and BRDs</p></article><article><img className="jisr-logo" src={`${A4}jisr.webp`} alt="Jisr"/><h2>Jisr</h2><p>Leave, attendance and HR requests</p></article></div><div className="company-essentials"><div><GraduationCap/><span>PROFESSIONAL DEVELOPMENT</span></div><strong>Certificate-support policy</strong><p>Review the approved Product and UX/UI certificates and the reimbursement conditions before registering.</p><strong>Approved certificates list</strong><p>The official list is separate from the free or low-cost learning courses used in the training journey.</p></div></div>}
+
+    {slide.type === 'thanks' && <div className="thanks"><h2>{slide.subtitle}</h2><p>You now know the company, the business, the team and the product direction you are joining.</p></div>}
 
     <SourceButton slide={slide} onOpen={onSources}/>
   </section>
