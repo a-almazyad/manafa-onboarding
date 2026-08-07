@@ -52,6 +52,13 @@ button { color: inherit; }
 .title-rule { width: 11%; height: 7px; margin: 6% 0 5%; background: var(--blue); }
 .cover-copy p { margin: 0; max-width: 74%; color: #56627a; font-size: clamp(16px,2vw,35px); line-height: 1.28; }
 .cover-meta { position: absolute; left: 5.3%; bottom: 8%; font-size: clamp(10px,1vw,18px); font-weight: 700; }
+.slide--section-break { padding: 0; background: #070a12; }
+.slide--section-break::before { width: 1.7%; }
+.section-break-number { position: absolute; right: 2.5%; bottom: 0; width: 42%; height: 42%; overflow: hidden; color: #121a2b; font-size: clamp(260px,35vw,630px); line-height: .8; font-weight: 900; letter-spacing: -.1em; user-select: none; }
+.section-break-copy { position: absolute; left: 6%; top: 50%; z-index: 2; width: 68%; transform: translateY(-50%); }
+.section-break-copy span { color: #7eb3ff; font-size: clamp(11px,1vw,18px); font-weight: 800; letter-spacing: .08em; }
+.section-break-copy h1 { margin: 2.5% 0 3%; font-size: clamp(45px,5.9vw,106px); line-height: .95; letter-spacing: -.055em; }
+.section-break-copy p { margin: 0; max-width: 78%; color: #b7c0d1; font-size: clamp(15px,1.55vw,28px); line-height: 1.4; }
 .statement-copy { position: absolute; left: 4.2%; bottom: 12%; width: 78%; }
 .statement-copy p { margin: 0; max-width: 86%; color: var(--muted); font-size: clamp(20px,2.5vw,45px); line-height: 1.25; }
 .slide--dark .statement-copy p { color: #c8d0dd; }
@@ -238,15 +245,9 @@ button { color: inherit; }
 .craft article p { display: grid; grid-template-columns: 24px 1fr; gap: 2%; margin: 0; padding: 3% 0; border-bottom: 1px solid #d7dee7; color: var(--muted); font-size: clamp(9px,.9vw,16px); }
 .craft article p svg { width: 15px; color: var(--green); }
 .craft > strong { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); padding: 1.2% 4%; background: var(--ink); color: #fff; white-space: nowrap; font-size: clamp(10px,1vw,18px); }
-.mission { margin-top: 2.6%; }
-.mission-main { display: grid; grid-template-columns: 8% 1fr; align-items: center; padding: 2.5%; border-block: 1px solid #3d4451; }
-.mission-main svg { width: 42px; height: 42px; color: var(--blue); }
-.mission-main p { margin: 0; color: #d0d6e0; font-size: clamp(14px,1.45vw,26px); line-height: 1.4; }
-.mission-phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 2.5%; background: #333946; }
-.mission-phases article { min-height: 115px; padding: 6%; background: #11151d; }
-.mission-phases span { color: #74adff; font-weight: 800; }
-.mission-phases p { margin: 6% 0 0; color: #b7c0ce; font-size: clamp(9px,.87vw,15px); line-height: 1.4; }
-.mission > strong { display: block; margin-top: 2.7%; font-size: clamp(22px,2.6vw,47px); letter-spacing: -.035em; }
+.slide--craft .slide-header h1 { font-size: clamp(27px,2.9vw,52px); }
+.slide--craft .craft { margin-top: 1.6%; padding-bottom: 5.5%; }
+.slide--craft .craft article { padding: 4%; }
 
 /* Controls and overlays */
 .deck-controls { position: fixed; left: 50%; bottom: 15px; transform: translateX(-50%); z-index: 40; width: min(620px,calc(100vw - 28px)); height: 50px; display: grid; grid-template-columns: 50px 50px 1fr 50px 50px; align-items: center; padding: 0 8px; background: #12161e; box-shadow: 0 12px 34px rgba(0,0,0,.2); }
@@ -284,9 +285,16 @@ button { color: inherit; }
   .cover-copy h1 { font-size: 55px; }
   .cover-copy p { max-width: 100%; font-size: 20px; }
   .cover-meta { left: 30px; font-size: 12px; }
+  .slide--section-break { padding: 0; overflow: hidden; }
+  .slide--section-break::before { width: 7px; }
+  .section-break-number { right: -18px; bottom: 0; width: 78%; height: 30%; font-size: 250px; }
+  .section-break-copy { left: 30px; width: calc(100% - 60px); }
+  .section-break-copy span { font-size: 10px; }
+  .section-break-copy h1 { margin: 14px 0 18px; font-size: 47px; }
+  .section-break-copy p { max-width: 100%; font-size: 17px; }
   .statement-copy { position: static; width: 100%; margin-top: 130px; }
   .statement-copy p { max-width: 100%; font-size: 28px; }
-  .journey-map, .scene-triptych, .metrics, .group-map, .company-pair, .product-overview, .process, .org, .scope-columns, .stakeholders, .portraits, .team-portraits, .delivery, .craft, .mission-phases { grid-template-columns: 1fr; }
+  .journey-map, .scene-triptych, .metrics, .group-map, .company-pair, .product-overview, .process, .org, .scope-columns, .stakeholders, .portraits, .team-portraits, .delivery, .craft { grid-template-columns: 1fr; }
   .journey-map article { min-height: 160px; }
   .journey-map h2 { margin: 16% 0 5%; }
   .brand-hero, .media-proof, .photo-moment, .poster-moment, .partner-wall, .journey-photo, .product-feature { grid-template-columns: 1fr; height: auto; }
@@ -325,8 +333,6 @@ button { color: inherit; }
   .delivery h2 { margin: 18% 0 6%; }
   .delivery svg { display: none; }
   .craft > strong { position: static; transform: none; display: block; margin-top: 14px; white-space: normal; text-align: center; }
-  .mission-main { grid-template-columns: 1fr; gap: 12px; }
-  .mission-main p { font-size: 16px; }
   .source-button { position: static; display: block; margin-top: 26px; }
   .overview-grid { grid-template-columns: 1fr 1fr; }
   .deck-controls { bottom: 7px; }
