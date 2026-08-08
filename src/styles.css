@@ -409,3 +409,66 @@
 .ecosystem-embedded>article{padding:0 6% 6%;background:#fff;border:1px solid #d5d8df}
 .ecosystem-embedded h2{display:grid;place-items:center;min-height:38px;margin:0 -6.5% 8%;background:var(--violet);color:#fff;font-size:clamp(8px,.68cqw,12px)}
 .ecosystem-embedded article span{display:block;margin-top:7%;padding:7%;border-left:4px solid var(--violet);background:#f0efec;font-size:clamp(6px,.52cqw,9.5px)}
+
+/* v12 — complete customer, operating-platform and financing narratives. */
+.content-header:has(.slide-lede)+.back-office,
+.content-header:has(.slide-lede)+.connected-journeys{margin-top:1.5%}
+
+/* The photograph already contains the Saudi Unicorns identity and operator marks. */
+.growth-story--unicorn{grid-template-rows:54% 46%}
+.growth-story--unicorn>img{object-position:center 48%}
+.growth-story--unicorn .growth-copy{display:flex;flex-direction:column;justify-content:center;padding:6% 8%}
+.growth-story--unicorn .growth-copy h2{margin:3% 0 4%;font-size:clamp(20px,1.75cqw,31px)}
+.growth-story--unicorn .growth-copy p{font-size:clamp(9px,.72cqw,13px);line-height:1.42}
+
+/* Each marketing image is presented as a complete vertical phone composition. */
+.channel-panel--borrower{grid-template-columns:34% 66%}
+.channel-panel--investor{grid-template-columns:66% 34%}
+.channel-copy{padding:10% 12%}
+.channel-copy h2{font-size:clamp(17px,1.45cqw,26px)}
+.channel-copy p{font-size:clamp(8px,.64cqw,11.5px)}
+.channel-phones{position:relative;display:flex;align-items:center;justify-content:center;gap:5%;min-width:0;min-height:0;padding:3% 4%;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(53,82,255,.2),transparent 58%),#060711}
+.channel-panel--investor .channel-phones{background:radial-gradient(circle at 50% 50%,rgba(70,94,255,.28),transparent 58%),#07091b}
+.channel-phones:before{bottom:-31%;width:72%;aspect-ratio:1}
+.channel-phones figure{position:relative;z-index:1;width:43%;height:auto;max-height:94%;aspect-ratio:9/16;margin:0;padding:5px;overflow:hidden;background:#05070d;border:1px solid rgba(255,255,255,.24);border-radius:24px;box-shadow:0 20px 34px rgba(0,0,0,.36);transform:translateY(4%)}
+.channel-phones figure:last-child{height:auto;transform:translateY(-3%)}
+.channel-phones img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:18px}
+
+/* Current Admin foundation and the first domain products spun out of it. */
+.back-office{display:grid;grid-template-columns:31% 9% 60%;align-items:stretch;height:62%;padding:2.5%;background:linear-gradient(135deg,#f4f6fb,#fff);border:1px solid #dfe4ed}
+.admin-core{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8%;background:#fff;border:1px solid #dce1ea;text-align:center}
+.admin-core>span,.back-office-shift span{color:#778297;font-size:clamp(7px,.58cqw,10px);font-weight:900;letter-spacing:.11em}
+.admin-orbit{display:grid;place-items:center;align-content:center;width:52%;aspect-ratio:1;margin:8% auto;background:radial-gradient(circle,#2e4fd0,#101a53);border-radius:50%;color:#fff;box-shadow:0 0 0 18px rgba(42,74,203,.05),0 0 0 38px rgba(42,74,203,.025)}
+.admin-orbit strong{font-size:clamp(18px,1.7cqw,30px)}
+.admin-orbit small{width:74%;margin-top:5%;color:#cad5ff;font-size:clamp(6px,.5cqw,9px);line-height:1.2}
+.admin-core p{max-width:86%;margin:0;color:var(--muted);font-size:clamp(8px,.66cqw,12px);line-height:1.45}
+.back-office-shift{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--violet);text-align:center}
+.back-office-shift svg{width:42%;height:auto}
+.back-office-shift span{margin-top:15%;color:var(--violet);line-height:1.25}
+.spin-offs{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5%}
+.spin-offs article{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:11%;background:#fff;border-top:6px solid var(--teal);box-shadow:0 10px 28px rgba(29,45,82,.07)}
+.spin-offs article:nth-child(2){border-color:var(--violet)}
+.spin-offs .icon-bubble{width:48px;height:48px}
+.spin-offs article>span{margin-top:18%;color:var(--teal);font-size:clamp(7px,.55cqw,10px);font-weight:900;letter-spacing:.09em}
+.spin-offs article:nth-child(2)>span{color:var(--violet)}
+.spin-offs h2{margin:7% 0 8%;font-size:clamp(15px,1.3cqw,23px);line-height:1.05}
+.spin-offs p{margin:0;color:var(--muted);font-size:clamp(8px,.63cqw,11px);line-height:1.45}
+
+/* Company and investor flows are shown together so capital participation is explicit. */
+.connected-journeys{display:grid;grid-template-rows:1fr 1fr;gap:5%;height:62%}
+.journey{display:grid;grid-template-columns:17% 83%;min-height:0;background:#f7f9fe;border:1px solid #dce3f2}
+.journey--teal{background:#f2fbf9;border-color:#d5ece8}
+.journey header{display:flex;align-items:center;gap:10%;padding:10%;background:#eaf0ff}
+.journey--teal header{background:#e3f6f2}
+.journey header .icon-bubble{flex:0 0 auto;width:45px;height:45px}
+.journey header span{color:var(--blue);font-size:clamp(6px,.5cqw,9px);font-weight:900;letter-spacing:.08em}
+.journey--teal header span{color:#087e7e}
+.journey header h2{margin:5% 0 0;font-size:clamp(15px,1.3cqw,23px)}
+.journey-flow{display:grid;grid-template-columns:repeat(7,1fr);align-items:stretch;min-width:0}
+.journey-flow>div{position:relative;display:flex;flex-direction:column;justify-content:center;padding:11% 12%;border-left:1px solid #dce3f2}
+.journey--teal .journey-flow>div{border-color:#d5ece8}
+.journey-flow b{color:#3158dc;font-size:clamp(9px,.76cqw,14px)}
+.journey--teal .journey-flow b{color:#0d9188}
+.journey-flow strong{margin-top:12%;font-size:clamp(8px,.65cqw,12px);line-height:1.25}
+.journey-flow svg{position:absolute;z-index:2;right:-8px;top:50%;width:16px;height:16px;padding:2px;background:#fff;border:1px solid #dce3f2;border-radius:50%;color:#3158dc;transform:translateY(-50%)}
+.journey--teal .journey-flow svg{border-color:#d5ece8;color:#0d9188}
