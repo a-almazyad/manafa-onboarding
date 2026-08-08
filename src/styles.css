@@ -564,3 +564,21 @@
 .decision-stack>i{position:relative;width:1px;height:100%;margin:0 auto;background:#6275bc}
 .decision-stack>i:after{content:"";position:absolute;left:50%;bottom:-1px;width:5px;height:5px;border-right:1px solid #8ea3ec;border-bottom:1px solid #8ea3ec;transform:translateX(-50%) rotate(45deg)}
 .decision-stack footer{align-self:end;padding:7%;border:1px solid rgba(255,255,255,.22);color:#a6e0db;font-size:clamp(8px,.62cqw,11px);font-weight:800;line-height:1.35}
+
+/* Intern culture: frame expectations as supported ways of working, not rules. */
+.thrive{display:grid;grid-template-columns:34% 66%;height:63%;margin-top:1.5%;overflow:hidden;background:#f7f9fd;border:1px solid #e0e5ee}
+.thrive>aside{position:relative;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:10%;background:linear-gradient(145deg,#0c226f,#183dc8);color:#fff}
+.thrive>aside>span{position:relative;color:#84d8d0;font-size:clamp(7px,.58cqw,10.5px);font-weight:900;letter-spacing:.14em}
+.thrive>aside h2{position:relative;margin:8% 0 7%;font-size:clamp(24px,2.3cqw,42px);line-height:1.02;letter-spacing:-.035em}
+.thrive>aside p{position:relative;margin:0;max-width:88%;color:#d6e0ff;font-size:clamp(9px,.7cqw,13px);line-height:1.5}
+.thrive-orbits{position:absolute;right:-32%;bottom:-40%;width:105%;aspect-ratio:1;border:1px solid rgba(113,214,205,.3);border-radius:50%}
+.thrive-orbits:before,.thrive-orbits:after,.thrive-orbits i{content:"";position:absolute;border:1px solid rgba(124,151,255,.34);border-radius:50%}
+.thrive-orbits:before{inset:15%}.thrive-orbits:after{inset:33%}.thrive-orbits i:first-child{inset:48%;background:#59c8c0;border:0}.thrive-orbits i:last-child{inset:62% 20% 20% 62%;border-color:rgba(255,255,255,.32)}
+.thrive-principles{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:0;padding:5% 6%;background:#fff}
+.thrive-principles article{position:relative;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:6%;min-width:0;padding:5% 7%;border-bottom:1px solid #e2e6ed}
+.thrive-principles article:nth-child(odd){border-right:1px solid #e2e6ed}
+.thrive-principles article:nth-last-child(-n+2){border-bottom:0}
+.thrive-principles article>b{position:absolute;right:7%;top:9%;color:#c1c8d5;font-size:clamp(8px,.64cqw,11px);letter-spacing:.08em}
+.thrive-principles .icon-bubble{width:43px;height:43px;flex:0 0 auto}
+.thrive-principles h2{margin:0 0 5%;font-size:clamp(12px,1.02cqw,18.5px);line-height:1.08}
+.thrive-principles p{margin:0;color:var(--muted);font-size:clamp(8px,.62cqw,11.3px);line-height:1.42}
