@@ -53,8 +53,8 @@ const departments = [
   ['Customer Care', 'العناية بالعملاء', Headphones], ['Technology & Engineering', 'التقنية والهندسة', Code2],
   ['Cybersecurity', 'الأمن السيبراني', LockKeyhole], ['Finance & Treasury', 'المالية والخزينة', Banknote],
   ['Human Resources', 'الموارد البشرية', UserCheck], ['Business Development & Partnership', 'تطوير الأعمال والشراكات', Handshake],
-  ['Marketing & Branding Communication', 'التسويق والعلامة التجارية والتواصل', Megaphone], ['Digital Investors', 'المستثمرون الرقميون', Users],
-  ['Digital Experience', 'التجربة الرقمية', Palette], ['Internal Audit', 'المراجعة الداخلية', ClipboardCheck],
+  ['Marketing & Branding Communication', 'التسويق والعلامة التجارية والتواصل', Megaphone], ['Digital Investors', 'المنتجات الرقمية للمستثمرين', Users],
+  ['Digital Experience', 'التجربة الرقمية', Palette], ['Digital Business', 'الأعمال الرقمية', Network],
 ]
 
 const milestones = [
@@ -88,7 +88,6 @@ const slides = [
   { id:'digital-section', type:'section', chapter:'03', title:'Digital Business', subtitle:'The stakeholders, team and delivery model', accent:'teal' },
   { id:'product-org', type:'product-org', title:'Where Digital Product sits', lede:'Product reports through Technology and is organised into two connected verticals. This onboarding focuses on Digital Business.' },
   { id:'team', type:'team', title:'Meet the Digital Business team', lede:'Product Leads, Business Analysts and UX/UI Designers work together from problem definition through production delivery.' },
-  { id:'delivery', type:'delivery', title:'How a demand becomes a production release', lede:'Traceability connects the original business demand to discovery, analysis, delivery work, release decisions and post-launch learning.' },
   { id:'ways-of-working', type:'ways', title:'How we work together', lede:'Our workflow gives structure to delivery without removing ownership: discuss early, document decisions and refine the solution together.' },
   { id:'how-to-thrive', type:'thrive', title:'How to thrive at Manafa', lede:'You are not expected to know everything from day one. You are expected to participate, communicate and grow through real work.' },
   { id:'tools', type:'tools', title:'Your daily toolkit and company essentials', lede:'Each tool has a clear purpose—from communication and documentation to delivery tracking, HR requests and professional development.' },
@@ -98,6 +97,7 @@ const slides = [
   { id:'strategy-meaning', type:'strategy-meaning', title:'The model we chose follows four structural rules', lede:'These rules translate the research into a product model Manafa can own, evolve and measure consistently.' },
   { id:'platform-strategy', type:'platform-strategy', title:'The 2026 target product suite', lede:'Audience-facing channels sit above focused business hubs, supported by shared platform capabilities.' },
   { id:'platform-progress', type:'platform-progress', title:'How we are progressing toward the strategy', lede:'Some products are live, some are being built, and others remain in analysis or ideation; the target suite is a direction of travel, not a claim that everything is complete.' },
+  { id:'delivery', type:'delivery', title:'How a demand becomes a production release', lede:'Traceability connects the original business demand to discovery, analysis, delivery work, release decisions and post-launch learning.' },
   { id:'thank-you', type:'thanks', title:'Welcome aboard', subtitle:'Questions?' },
 ]
 

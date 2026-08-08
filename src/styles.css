@@ -582,3 +582,36 @@
 .thrive-principles .icon-bubble{width:43px;height:43px;flex:0 0 auto}
 .thrive-principles h2{margin:0 0 5%;font-size:clamp(12px,1.02cqw,18.5px);line-height:1.08}
 .thrive-principles p{margin:0;color:var(--muted);font-size:clamp(8px,.62cqw,11.3px);line-height:1.42}
+
+/* v16 — strategy readability, milestone cleanup and Admin problem spacing. */
+.milestones .has-image .milestone-year{padding:0;background:transparent}
+
+.monolith{left:6%;top:10%;width:26%}
+.monolith i{padding:8px 12px;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.17);font-size:clamp(8px,.68cqw,12px);font-weight:750;box-shadow:0 5px 14px rgba(3,15,73,.18)}
+.monolith i:nth-of-type(1){top:13%;left:35%}
+.monolith i:nth-of-type(2){right:8%;top:34%}
+.monolith i:nth-of-type(3){right:12%;bottom:15%}
+.monolith i:nth-of-type(4){left:12%;bottom:15%}
+.monolith i:nth-of-type(5){left:7%;top:34%}
+.problem-list{top:5%}
+
+.strategy-problem>footer{left:36%}
+.strategy-ecosystem{grid-template-columns:minmax(0,1fr) 22%;gap:1.4%;height:70%}
+.ecosystem-suite{grid-template-rows:7% 14% 64% 15%;padding:0 .8% .8%}
+.ecosystem-suite>header,.ecosystem-embedded>header{font-size:clamp(8px,.65cqw,12px)}
+.ecosystem-band{grid-template-columns:14% repeat(4,1fr);gap:.8%;padding:.5% 0}
+.ecosystem-band>label{padding:5%}
+.ecosystem-band>label b{font-size:clamp(14px,1.3cqw,24px)}
+.ecosystem-band>label strong{font-size:clamp(7px,.6cqw,11px)}
+.ecosystem-band>label small{font-size:clamp(7px,.52cqw,9.5px)}
+.ecosystem-channels>span{font-size:clamp(10.5px,.82cqw,15px)}
+.ecosystem-hubs{grid-template-columns:14% repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1.2% .8%;padding:.7% 0}
+.ecosystem-hubs>label{grid-row:1/-1}
+.ecosystem-hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto repeat(3,1fr);gap:4px;padding:0 2.5% 2.5%}
+.ecosystem-hub h2{grid-column:1/-1;min-height:29px;margin:0 -2.7% 1%;padding:1.5%;font-size:clamp(10px,.82cqw,15px)}
+.ecosystem-hub span{min-height:0;margin:0;padding:3% 4%;font-size:clamp(10px,.74cqw,13.5px);line-height:1.14}
+.ecosystem-shared>span{font-size:clamp(9.5px,.72cqw,13px)}
+.ecosystem-embedded{grid-template-rows:7% 14% 1fr;gap:1.5%;padding:0 5% 5%}
+.ecosystem-embedded>strong{font-size:clamp(9px,.72cqw,13px)}
+.ecosystem-embedded h2{min-height:34px;margin-bottom:5%;font-size:clamp(10px,.8cqw,14.5px)}
+.ecosystem-embedded article span{margin-top:5%;padding:6%;font-size:clamp(10px,.73cqw,13.5px);line-height:1.2}
