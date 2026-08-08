@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import {
   ArrowLeft, ArrowRight, BadgeCheck, Banknote, BookOpen, BriefcaseBusiness,
   Building2, CalendarDays, CheckCircle2, ChevronRight, CircleDollarSign,
-  ClipboardCheck, Code2, Database, Expand, Factory, FileCheck2, GitBranch,
-  GraduationCap, HandCoins, Handshake, Headphones, Landmark, Layers3,
+  ClipboardCheck, Code2, Expand, Factory, FileCheck2, GitBranch,
+  GraduationCap, HandCoins, Handshake, Headphones, Landmark,
   LockKeyhole, Megaphone, Menu, MessageCircle, Network, Palette, Presentation,
   ReceiptText, Rocket, Scale, Search, ShieldCheck, Store, UserCheck, UserRound,
   Users, WalletCards, Waypoints, X,
@@ -16,6 +16,7 @@ const A3 = `${import.meta.env.BASE_URL}assets/v3/`
 const A4 = `${import.meta.env.BASE_URL}assets/v4/`
 const A5 = `${import.meta.env.BASE_URL}assets/v5/`
 const A6 = `${import.meta.env.BASE_URL}assets/v6/`
+const A7 = `${import.meta.env.BASE_URL}assets/v7/`
 
 const products = [
   { name:'Invoice Financing', icon:'invoice.svg', copy:'Turn approved invoices into working cash before the customer pays.', tone:'blue' },
@@ -67,7 +68,8 @@ const milestones = [
 
 const slides = [
   { id:'welcome', type:'cover', title:'Welcome to Manafa', subtitle:'Digital Business onboarding' },
-  { id:'agenda', type:'agenda', title:'Today’s journey', lede:'A guided introduction to the company, the financing business and the digital organisation you are joining.' },
+  { id:'agenda', type:'agenda', title:'Today’s journey', lede:'A guided introduction to Manafa, its financing business, the digital organisation you are joining and the 2026 product direction.' },
+  { id:'group', type:'group', title:'A growing group with shared roots', lede:'Manafa’s journey has produced specialised sister companies and a dedicated technology organisation, each with a distinct mandate.' },
   { id:'at-a-glance', type:'at-glance', title:'Manafa at a glance', lede:'Manafa is a Saudi fintech that connects businesses seeking finance with individuals and institutions seeking investment opportunities.', sources:[['Manafa — About','https://manafa.sa/about']] },
   { id:'business-model', type:'business-model', title:'How Manafa connects capital with business needs', lede:'Crowdlending and supply-chain financing involve different participants, while relying on one regulated digital and operational foundation.' },
   { id:'company-story', type:'milestones', title:'How Manafa grew into a national financing platform', lede:'The story moves from founding and licensing to institutional investment, national recognition and large-scale financing programs.' },
@@ -76,26 +78,24 @@ const slides = [
   { id:'national-programs', type:'programs', title:'SCF partnerships moved Manafa to national scale', lede:'The Aramco and Saudi Electricity Company programs brought Manafa into complex buyer-led ecosystems serving large supplier networks.', sources:[['Aramco — SCF announcement','https://www.aramco.com/en/news-media/news/2024/aramco-sidf-and-taulia-announce-supply-chain-financing-solution'],['Manafa — SEC SCF announcement','https://www.linkedin.com/posts/manafa-co_fii9-activity-7389028836077678592-D87w']] },
   { id:'metrics', type:'metrics', title:'Manafa today', lede:'These public figures show the scale of activity the platform, operations and product teams support today.', sources:[['Manafa — Achievements','https://manafa.sa/achievement']] },
   { id:'leadership', type:'leadership', title:'The executive team', lede:'The executive team brings together business, technology, growth, finance, control and governance under the Founder and CEO.' },
-  { id:'group', type:'group', title:'A growing group with shared roots', lede:'Manafa’s journey has produced specialised sister companies and a dedicated technology organisation, each with a distinct mandate.' },
   { id:'partners', type:'partners', title:'The ecosystem around Manafa', lede:'Manafa scales through institutional investors and partnerships with public and private organisations across the SME-financing ecosystem.' },
   { id:'business-section', type:'section', chapter:'02', title:'Business and products', subtitle:'The financing portfolio and the journey behind every request', accent:'violet' },
   { id:'products', type:'products', title:'Seven ways Manafa finances businesses', lede:'Each product addresses a different cash-flow or contractual need, but all rely on the same disciplines of onboarding, assessment, funding and servicing.' },
   { id:'lifecycle', type:'lifecycle', title:'What happens from application to closure', lede:'A financing request crosses customer-facing, credit, operational and capital-participation activities before it can be fully closed.' },
-  { id:'borrower-channel', type:'borrower-app', title:'Borrower channels: web and mobile', lede:'Business customers discover financing, submit requests and manage their relationship with Manafa through connected web and mobile experiences.', sources:[['Manafa Business — App Store','https://apps.apple.com/us/app/manafa-business/id6476872737']] },
-  { id:'investor-channel', type:'investor-app', title:'Investor channels: web and mobile', lede:'Investors use Manafa’s web and mobile experiences to onboard, discover opportunities, participate and monitor their portfolios.', sources:[['Manafa — App Store','https://apps.apple.com/us/app/manafa-%D9%85%D9%86%D8%A7%D9%81%D8%B9/id1555411095']] },
+  { id:'customer-channels', type:'customer-channels', title:'Two customer relationships, connected across web and mobile', lede:'Borrowers and investors use different journeys, but each relationship continues across Manafa’s web and mobile channels.', sources:[['Manafa Business — App Store','https://apps.apple.com/us/app/manafa-business/id6476872737'],['Manafa — App Store','https://apps.apple.com/us/app/manafa-%D9%85%D9%86%D8%A7%D9%81%D8%B9/id1555411095']] },
   { id:'digital-section', type:'section', chapter:'03', title:'Digital Business', subtitle:'The stakeholders, team, platforms and delivery model', accent:'teal' },
-  { id:'departments', type:'departments', title:'The departments we work with', lede:'Digital Business does not deliver alone. Each financing journey depends on specialised stakeholders who shape policy, risk, operations and customer outcomes.' },
+  { id:'departments', type:'departments', title:'Manafa’s internal departments', lede:'These functions collectively run Manafa. Digital Product collaborates with them across policy, risk, operations, customer outcomes and delivery.' },
   { id:'product-org', type:'product-org', title:'Where Digital Product sits', lede:'Product reports through Technology and is organised into two closely connected areas covering business, investor and experience outcomes.' },
   { id:'team', type:'team', title:'Meet the Digital Business team', lede:'Product Leads, Business Analysts and UX/UI Designers work together from problem definition through production delivery.' },
   { id:'digital-business', type:'digital-business', title:'What Digital Business owns', lede:'Our scope covers the customer-facing business channels and the internal products that make financing possible.' },
-  { id:'strategy-section', type:'section', chapter:'04', title:'Product strategy', subtitle:'How Manafa’s digital operating model is evolving', accent:'violet' },
-  { id:'strategy-problem', type:'strategy-problem', title:'Why the current product model must change', lede:'A single expanding Admin Portal concentrates unrelated domains, obscures ownership and makes every new product harder to scale safely.' },
-  { id:'strategy-method', type:'strategy-method', title:'How the target structure was developed', lede:'The target structure came from internal discovery, external benchmarking and validation—not from naming systems in isolation.' },
-  { id:'platform-strategy', type:'platform-strategy', title:'From one Admin Portal to a focused product suite', lede:'Channels serve customers, focused platforms run the operation, and shared foundations keep the suite coherent.' },
-  { id:'platform-progress', type:'platform-progress', title:'The transition is already underway', lede:'Some products are live, some are being built, and others remain in analysis or ideation; the target architecture is a direction of travel.' },
   { id:'delivery', type:'delivery', title:'How a demand becomes a production release', lede:'Traceability connects the original business demand to discovery, analysis, delivery work, release decisions and post-launch learning.' },
   { id:'ways-of-working', type:'ways', title:'How we work together', lede:'Our workflow gives structure to delivery without removing ownership: discuss early, document decisions and refine the solution together.' },
   { id:'tools', type:'tools', title:'Your daily toolkit and company essentials', lede:'Each tool has a clear purpose—from communication and documentation to delivery tracking, HR requests and professional development.' },
+  { id:'strategy-section', type:'section', chapter:'04', title:'2026 Product Strategy', subtitle:'How Manafa’s digital product model is evolving', accent:'violet' },
+  { id:'strategy-problem', type:'strategy-problem', title:'Why the current product model must change', lede:'The 2026 strategy responds to a single expanding Admin Portal that concentrates unrelated domains, obscures ownership and makes every new product harder to scale safely.' },
+  { id:'strategy-method', type:'strategy-method', title:'How the 2026 target structure was developed', lede:'The target structure came from internal discovery, external benchmarking and validation—not from naming systems in isolation.' },
+  { id:'platform-strategy', type:'platform-strategy', title:'The 2026 target product suite', lede:'Audience-facing channels sit above focused business hubs, supported by shared platform capabilities.' },
+  { id:'platform-progress', type:'platform-progress', title:'How we are progressing toward the strategy', lede:'Some products are live, some are being built, and others remain in analysis or ideation; the target suite is a direction of travel, not a claim that everything is complete.' },
   { id:'thank-you', type:'thanks', title:'Welcome aboard', subtitle:'Questions?' },
 ]
 
@@ -141,10 +141,10 @@ function RenderSlide({ slide, index, total, onSources }) {
     <header className="content-header"><h1>{slide.title}</h1><div/>{slide.lede&&<p className="slide-lede">{slide.lede}</p>}</header>
 
     {slide.type === 'agenda' && <div className="agenda-grid">{[
-      ['01','Manafa','The company story, regulation, scale and ecosystem.'],
-      ['02','Business and channels','The financing portfolio, lifecycle and customer touchpoints.'],
-      ['03','Digital Business','Our stakeholders, product organisation, people and scope.'],
-      ['04','Strategy and delivery','How the product model is evolving and how work reaches production.'],
+      ['01','Manafa group and company','The group, company story, regulation, scale and ecosystem.'],
+      ['02','Business and products','Financing products, lifecycle and customer channels.'],
+      ['03','Digital Business','Organisation, people, scope, delivery and daily tools.'],
+      ['04','2026 Product Strategy','Why the model is evolving and how the transition is progressing.'],
     ].map(([n,t,c])=><article key={n}><b>{n}</b><div><h2>{t}</h2><p>{c}</p></div></article>)}</div>}
 
     {slide.type === 'at-glance' && <div className="at-glance">
@@ -172,7 +172,7 @@ function RenderSlide({ slide, index, total, onSources }) {
     </div>}
 
     {slide.type === 'regulation' && <div className="regulation">
-      <div className="sama-mark"><img src={`${A3}sama.png`} alt="Saudi Central Bank"/></div>
+      <div className="sama-mark"><img src={`${A7}sama-logo.svg`} alt="Saudi Central Bank"/></div>
       <div className="reg-cards">
         <article><div className="reg-year">2022</div><IconBubble Icon={FileCheck2}/><h2>Debt Crowdfunding Licence</h2><p>The full licence established Manafa’s regulated crowdlending activity.</p><footer>Licensed activity</footer></article>
         <div className="reg-bridge"><span>regulated growth</span><i/></div>
@@ -186,8 +186,8 @@ function RenderSlide({ slide, index, total, onSources }) {
     </div>}
 
     {slide.type === 'programs' && <div className="programs">
-      <article><figure><img src={`${A2}aramco-signing.webp`} alt="Aramco SCF signing"/></figure><div><span>FII8 · 2024</span><h2>Aramco</h2><p>Manafa joined Aramco, SIDF and Taulia in a wide-reaching supply-chain financing solution designed to support Aramco suppliers.</p><div className="program-logos"><img src={`${A5}aramco.svg`} alt="Aramco"/><img src={`${A5}sidf.png`} alt="SIDF"/></div><strong>Landmark enterprise SCF program</strong></div></article>
-      <article><figure><img src={`${A5}sec-signing.jpg`} alt="Manafa and Saudi Electricity Company announcing the SCF program at FII9"/></figure><div><span>FII9 · 2025</span><h2>Saudi Electricity Company</h2><p>The model expanded to a second national anchor, extending financing coverage across the electricity supply chain.</p><div className="program-logos program-logos--sec"><img src={`${A5}sec.svg`} alt="Saudi Electricity Company"/><Logo/></div><strong>Expansion of the national model</strong></div></article>
+      <article><figure><img src={`${A2}aramco-signing.webp`} alt="Aramco SCF signing"/></figure><div><span>FII8 · 2024</span><h2>Aramco</h2><p>Manafa joined Aramco, SIDF and Taulia in a wide-reaching supply-chain financing solution designed to support Aramco suppliers.</p><div className="program-outcome"><strong>Landmark enterprise SCF program</strong><div className="program-logos"><img src={`${A5}aramco.svg`} alt="Aramco"/><img src={`${A5}sidf.png`} alt="SIDF"/><Logo/></div></div></div></article>
+      <article><figure><img src={`${A5}sec-signing.jpg`} alt="Manafa and Saudi Electricity Company announcing the SCF program at FII9"/></figure><div><span>FII9 · 2025</span><h2>Saudi Electricity Company</h2><p>The model expanded to a second national anchor, extending financing coverage across the electricity supply chain.</p><div className="program-outcome"><strong>Expansion of the national model</strong><div className="program-logos program-logos--sec"><img src={`${A5}sec.svg`} alt="Saudi Electricity Company"/><img src={`${A5}sidf.png`} alt="SIDF"/><Logo/></div></div></div></article>
     </div>}
 
     {slide.type === 'metrics' && <div className="metrics-scene"><div className="metric-rings"><i/><i/></div><div className="metric-primary"><span>TOTAL FINANCING</span><strong><AnimatedNumber value={3.2} decimals={1} suffix="B+"/></strong><small>SAR financed through Manafa</small></div><div className="metric-secondary"><article><Users/><div><strong><AnimatedNumber value={200} suffix="K+"/></strong><span>users</span></div></article><article><BriefcaseBusiness/><div><strong><AnimatedNumber value={190} suffix="+"/></strong><span>team members</span></div></article><article><Handshake/><div><strong><AnimatedNumber value={12} suffix="+"/></strong><span>partnerships</span></div></article></div><p>Public figures shown on Manafa’s achievement page.</p></div>}
@@ -217,9 +217,11 @@ function RenderSlide({ slide, index, total, onSources }) {
 
     {slide.type === 'digital-business' && <div className="digital-business"><div className="scope-intro"><h2>We own the digital experience for Manafa’s business side.</h2><p>That includes the journeys customers use and the internal products that make financing possible.</p></div><div className="scope-map"><article className="scope-channel"><span>01 · BUSINESS CHANNELS</span><div><strong>Borrower</strong><strong>Buyer</strong><strong>Funder</strong><strong>Embedded</strong></div></article><div className="scope-bridge"><i/><i/><i/><i/></div><article className="scope-platform"><span>02 · BACK-OFFICE PRODUCTS</span><div><strong>Customer</strong><strong>Lending</strong><strong>Counterparty</strong><strong>Financial</strong></div></article></div></div>}
 
-    {slide.type === 'borrower-app' && <div className="customer-channel customer-channel--borrower"><div className="channel-story"><img src={`${A5}manafa-business-icon.jpg`} alt="Manafa Business app icon"/><div className="channel-labels"><span>WEB</span><span>MOBILE</span></div><h2>Manafa Business</h2><p>One borrower relationship across channels: discover products, apply for financing, submit information and follow the request.</p><a href="https://apps.apple.com/us/app/manafa-business/id6476872737" target="_blank" rel="noreferrer">View mobile channel <ChevronRight/></a></div><div className="phone-gallery"><figure><img src={`${A5}manafa-business-01.png`} alt="Manafa Business app screen one"/></figure><figure><img src={`${A5}manafa-business-02.png`} alt="Manafa Business app screen two"/></figure><figure><img src={`${A5}manafa-business-03.png`} alt="Manafa Business app screen three"/></figure></div></div>}
-
-    {slide.type === 'investor-app' && <div className="customer-channel customer-channel--investor"><div className="channel-story"><img src={`${A6}manafa-investor-icon.jpg`} alt="Manafa investor app icon"/><div className="channel-labels"><span>WEB</span><span>MOBILE</span></div><h2>Manafa Investor</h2><p>One investor relationship across channels: onboard, discover opportunities, participate and monitor active and past investments.</p><a href="https://apps.apple.com/us/app/manafa-%D9%85%D9%86%D8%A7%D9%81%D8%B9/id1555411095" target="_blank" rel="noreferrer">View mobile channel <ChevronRight/></a></div><div className="phone-gallery"><figure><img src={`${A6}manafa-investor-01.png`} alt="Manafa investor app screen one"/></figure><figure><img src={`${A6}manafa-investor-02.png`} alt="Manafa investor app screen two"/></figure><figure><img src={`${A6}manafa-investor-03.png`} alt="Manafa investor app screen three"/></figure></div></div>}
+    {slide.type === 'customer-channels' && <div className="customer-channels">
+      <article className="channel-panel channel-panel--borrower"><div className="channel-copy"><img src={`${A5}manafa-business-icon.jpg`} alt="Manafa Business app icon"/><div><span>WEB · MOBILE</span><h2>Borrower relationship</h2><p>Businesses discover financing, apply, submit information and follow requests across Manafa Business channels.</p></div></div><div className="channel-phones"><figure><img src={`${A5}manafa-business-01.png`} alt="Manafa Business application screen"/></figure><figure><img src={`${A5}manafa-business-02.png`} alt="Manafa Business financing screen"/></figure></div></article>
+      <div className="channel-seam"><span>CONNECTED<br/>CHANNELS</span></div>
+      <article className="channel-panel channel-panel--investor"><div className="channel-copy"><img src={`${A6}manafa-investor-icon.jpg`} alt="Manafa investor app icon"/><div><span>WEB · MOBILE</span><h2>Investor relationship</h2><p>Investors onboard, discover opportunities, participate and monitor their portfolios across Manafa channels.</p></div></div><div className="channel-phones"><figure><img src={`${A6}manafa-investor-01.png`} alt="Manafa investor opportunities screen"/></figure><figure><img src={`${A6}manafa-investor-02.png`} alt="Manafa investor portfolio screen"/></figure></div></article>
+    </div>}
 
     {slide.type === 'strategy-problem' && <div className="strategy-problem"><div className="monolith"><div className="monolith-orbits"/><strong>ADMIN</strong><span>One growing portal</span><i>Customer</i><i>Lending</i><i>Counterparty</i><i>Finance</i><i>Permissions</i></div><div className="problem-list">{[
       ['Ownership','Most work sits under “Admin,” so domain outcomes are difficult to own.'],
@@ -234,7 +236,13 @@ function RenderSlide({ slide, index, total, onSources }) {
       ['03','Validation','Testing and refinement',Waypoints,'Tested alternative structures before defining the target suite.'],
     ].map(([n,k,t,Icon,c],i)=><article key={n} style={{'--i':i}}><b>{n}</b><IconBubble Icon={Icon} tone={i===1?'teal':i===2?'coral':'violet'}/><span>{k}</span><h2>{t}</h2><p>{c}</p><footer>{i===2?'Output: target product structure':'Input to the strategy'}</footer></article>)}<div className="method-output"><strong>Discovery output</strong><span>A domain-led suite with explicit ownership and clear separation between audience-facing channels and internal platforms.</span></div></div>}
 
-    {slide.type === 'platform-strategy' && <div className="architecture-map"><aside className="legacy-rail"><span>LEGACY</span><h2>Admin Portal</h2><p>Remains operational while capabilities move into focused products.</p><div className="legacy-fade"><i/><i/><i/><i/></div></aside><div className="architecture-layers"><article className="architecture-layer architecture-layer--channel"><div className="layer-label"><Presentation/><span>Customer channels</span></div><div className="layer-content"><strong>Borrower Web & Mobile · Buyer · Funder · Embedded</strong><small>Apply · sign · view · manage · repay</small></div></article><article className="architecture-layer architecture-layer--platform"><div className="layer-label"><Layers3/><span>Focused platforms</span></div><div className="hub-groups"><div><b>Customer Hub</b><small>CRM · Client Lifecycle</small></div><div><b>Lending Hub</b><small>LOS · Loan Management</small></div><div><b>Counterparty Hub</b><small>SCF FinOps · Buyer & Funder</small></div><div><b>Financial Hub</b><small>Invoice Management</small></div></div></article><article className="architecture-layer architecture-layer--foundation"><div className="layer-label"><Database/><span>Shared foundations</span></div><div className="foundation-names"><b>Design System</b><b>Identity & Access</b><b>Data & Insights</b><b>Knowledge</b><b>Audit & Logs</b></div></article></div><footer className="architecture-takeaway"><strong>Transition in progress.</strong><span>Not every focused platform is live today.</span></footer></div>}
+    {slide.type === 'platform-strategy' && <div className="suite-architecture"><aside className="suite-rail"><div><b>01</b><strong>CHANNELS</strong><span>Audience-facing</span></div><div><b>02</b><strong>CORE HUBS</strong><span>Specialised capabilities</span></div><div><b>03</b><strong>SHARED PLATFORM</strong><span>Cross-cutting services</span></div></aside><div className="suite-body"><div className="suite-channels">{['Borrower','Investor','Funder','Buyer','Embedded'].map(x=><strong key={x}>{x}</strong>)}</div><div className="suite-hubs">
+      <article className="suite-hub suite-hub--customer"><h2>Customer Hub</h2><span>CRM Platform</span><span>Client Lifecycle (CLM)</span><span>Customer Service</span><span>Customer Engagement (CEP)</span></article>
+      <article className="suite-hub suite-hub--lending"><h2>Lending Hub</h2><span>Loan Origination (LOS)</span><span>Loan Management (LMS)</span><span>Collections Management</span></article>
+      <article className="suite-hub suite-hub--counterparty"><h2>Counterparty Hub</h2><span>Funder Management</span><span>Buyer Management</span><span>SCF FinOps</span></article>
+      <article className="suite-hub suite-hub--financial"><h2>Financial Hub</h2><span>Ledger Platform</span><span>Treasury Platform</span><span>Invoicing & Tax</span></article>
+      <article className="suite-hub suite-hub--embedded"><h2>Embedded Hub</h2><span>Developer Platform</span><span>APIs Gateway</span><span>APIs Middleware</span><span>ERP Middleware</span></article>
+    </div><div className="suite-shared"><strong>User & Access Management</strong><strong>Analytics & Dashboards</strong><strong>Logs Management</strong></div></div></div>}
 
     {slide.type === 'platform-progress' && <div className="platform-progress"><div className="live-platforms"><span>LIVE OR IN DELIVERY</span>{[
       ['CRM','Customer Hub','Live · enhancement roadmap active','live'],
