@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   ArrowLeft, ArrowRight, BadgeCheck, Banknote, BookOpen, BriefcaseBusiness,
@@ -261,6 +261,15 @@ function App() {
   const [overview,setOverview] = useState(false)
   const [sourceSlide,setSourceSlide] = useState(null)
   const touchStart = useRef(null)
+  useLayoutEffect(()=>{
+    const fitDeck=()=>{
+      const horizontal=(window.innerWidth-44)/1280
+      const vertical=(window.innerHeight-100)/720
+      document.documentElement.style.setProperty('--deck-scale',String(Math.max(.1,Math.min(horizontal,vertical))))
+    }
+    fitDeck();addEventListener('resize',fitDeck)
+    return()=>{removeEventListener('resize',fitDeck);document.documentElement.style.removeProperty('--deck-scale')}
+  },[])
   const go = useCallback(next=>{const i=Math.max(0,Math.min(slides.length-1,next));setCurrent(i);history.replaceState(null,'',`#${slides[i].id}`)},[])
   useEffect(()=>{const onHash=()=>{const i=slides.findIndex(s=>s.id===location.hash.replace('#',''));if(i>=0)setCurrent(i)};const onKey=e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1);if(e.key.toLowerCase()==='o')setOverview(v=>!v);if(e.key==='Escape'){setOverview(false);setSourceSlide(null)}};addEventListener('hashchange',onHash);addEventListener('keydown',onKey);return()=>{removeEventListener('hashchange',onHash);removeEventListener('keydown',onKey)}},[current,go])
   const progress=useMemo(()=>((current+1)/slides.length)*100,[current])
