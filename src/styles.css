@@ -491,3 +491,75 @@
 .focused-platforms .icon-bubble{width:50px;height:50px;margin-bottom:15%}
 .focused-platforms h2{margin:8% 0 9%;font-size:clamp(16px,1.42cqw,25px);line-height:1.05}
 .focused-platforms p{margin:0;color:var(--muted);font-size:clamp(8px,.64cqw,11.5px);line-height:1.48}
+
+/* v14 — evidence-backed scope, ownership and strategy narrative. */
+.growth-story--unicorn .growth-copy{background:#111b4f;color:#fff}
+.growth-story--unicorn .growth-copy>span{color:#80a0ff}
+.growth-story--unicorn .growth-copy h2{color:#fff}
+.growth-story--unicorn .growth-copy p{color:#d8e1ff}
+
+/* Three App Store frames per channel, in the published sequence. */
+.channel-phones{gap:3%;padding:2.5% 3%}
+.channel-phones figure,.channel-phones figure:last-child{width:30%;max-height:92%;padding:4px;border-radius:20px;transform:none}
+.channel-phones figure:nth-child(2){transform:translateY(-2.5%)}
+.channel-phones img{border-radius:15px}
+
+/* Admin scope comes from the current Confluence coverage matrix. */
+.platform-landscape{grid-template-columns:43% 57%;gap:1.6%;padding:2.1%}
+.admin-platform{padding:5.5%}
+.platform-heading .icon-bubble{width:46px;height:46px}
+.platform-heading h2{font-size:clamp(20px,1.7cqw,31px)}
+.admin-platform>p{margin:5% 0;font-size:clamp(8px,.64cqw,11.5px)}
+.admin-capabilities{gap:5px}
+.admin-capabilities span{min-height:29px;padding:2.5% 5%;font-size:clamp(7px,.54cqw,10px);line-height:1.16}
+.admin-capabilities span:last-child{grid-column:auto}
+.focused-platforms{gap:2%}
+.focused-platforms article{padding:8.5%}
+.focused-platforms article:nth-child(2){border-top-color:var(--violet)}
+.focused-platforms article:nth-child(3){border-top-color:var(--teal)}
+.focused-platforms .icon-bubble{width:44px;height:44px;margin-bottom:12%}
+.focused-platforms h2{font-size:clamp(15px,1.2cqw,22px)}
+.focused-platforms p{font-size:clamp(7px,.56cqw,10.5px);line-height:1.42}
+
+/* Make the Digital Business branch unmistakably the focus of this onboarding. */
+.org-branch{border-radius:3px}
+.org-branch--focus{padding:28px 5% 3%!important;background:linear-gradient(135deg,#edf2ff,#f9fbff);box-shadow:inset 5px 0 0 var(--blue),0 12px 30px rgba(35,69,184,.08)}
+.org-branch--focus em{position:absolute;left:5%;top:8px;color:var(--blue);font-size:clamp(7px,.55cqw,10px);font-style:normal;font-weight:900;letter-spacing:.1em}
+.org-branch--context{opacity:.76}
+
+/* Digital Business owns named products, not entire hubs. */
+.ownership-portfolio{display:grid;grid-template-columns:26% 74%;grid-template-rows:1fr 14%;height:62%;background:#f7f9fd}
+.owned-channels,.owned-products{min-height:0;padding:7%}
+.owned-channels{background:linear-gradient(145deg,#173bc8,#101d61);color:#fff}
+.owned-products{padding:4% 4.5%;background:#fff}
+.owned-channels header,.owned-products header{display:flex;align-items:center;gap:7%}
+.owned-channels header b,.owned-products header b{font-size:clamp(22px,2.1cqw,38px);line-height:1;color:#6f8dff}
+.owned-channels header span,.owned-products header span{font-size:clamp(6px,.5cqw,9px);font-weight:900;letter-spacing:.09em}
+.owned-channels header h2,.owned-products header h2{margin:4% 0 0;font-size:clamp(14px,1.25cqw,23px);line-height:1.05}
+.owned-channels>div{display:grid;gap:7px;margin-top:14%}
+.owned-channels>div strong{padding:8% 9%;background:rgba(255,255,255,.1);border-left:4px solid #72d8d0;font-size:clamp(10px,.82cqw,15px)}
+.ownership-domains{display:grid;grid-template-columns:1.05fr .95fr 1fr .9fr 1.2fr;gap:1.5%;height:72%;margin-top:4%}
+.ownership-domains article{min-width:0;padding-left:8%;border-left:4px solid var(--blue)}
+.ownership-domains article:nth-child(2){border-color:#82996b}.ownership-domains article:nth-child(3){border-color:#a78c5f}.ownership-domains article:nth-child(4){border-color:#e97664}.ownership-domains article:nth-child(5){border-color:var(--violet)}
+.ownership-domains h3{margin:0 0 8%;font-size:clamp(10px,.8cqw,14px);line-height:1.1}
+.ownership-domains span{display:block;padding:4.5% 0;border-top:1px solid #e3e7ee;color:#4b5568;font-size:clamp(8.5px,.67cqw,12px);line-height:1.15}
+.ownership-portfolio>footer{grid-column:1/-1;display:flex;align-items:center;gap:3%;padding:0 2.5%;background:#111722;color:#fff}
+.ownership-portfolio>footer span{flex:0 0 auto;color:#8eabff;font-size:clamp(8px,.62cqw,11px);font-weight:900;letter-spacing:.08em}
+.ownership-portfolio>footer strong{font-size:clamp(8px,.64cqw,11.5px);font-weight:600;line-height:1.3}
+
+/* The strategy now reads: problem → research → decision → product suite. */
+.content-header:has(.slide-lede)+.strategy-decision{margin-top:1.5%}
+.strategy-decision{display:grid;grid-template-columns:66% 34%;height:62%;background:#f7f8fb;border:1px solid #dfe3ea}
+.decision-rules{display:grid;grid-template-rows:repeat(4,1fr);min-height:0;background:#fff}
+.decision-rules article{display:grid;grid-template-columns:10% 90%;align-items:center;padding:0 5%;border-bottom:1px solid #e2e6ed}
+.decision-rules article:last-child{border-bottom:0}
+.decision-rules b{color:var(--violet);font-size:clamp(17px,1.55cqw,28px)}
+.decision-rules h2{margin:0;font-size:clamp(12px,1cqw,18px)}
+.decision-rules p{margin:3% 0 0;color:var(--muted);font-size:clamp(8px,.63cqw,11.5px);line-height:1.38}
+.decision-stack{display:grid;grid-template-rows:8% 11% 9% 8% 11% 9% 8% 11% 25%;align-content:stretch;padding:9% 10% 7%;background:linear-gradient(145deg,#141b42,#221b56);color:#fff;text-align:center}
+.decision-stack>span{color:#91a6eb;font-size:clamp(6px,.5cqw,9px);font-weight:900;letter-spacing:.12em}
+.decision-stack>span,.decision-stack>strong{display:grid;place-items:center}
+.decision-stack>strong{font-size:clamp(14px,1.25cqw,23px)}
+.decision-stack>i{position:relative;width:1px;height:100%;margin:0 auto;background:#6275bc}
+.decision-stack>i:after{content:"";position:absolute;left:50%;bottom:-1px;width:5px;height:5px;border-right:1px solid #8ea3ec;border-bottom:1px solid #8ea3ec;transform:translateX(-50%) rotate(45deg)}
+.decision-stack footer{align-self:end;padding:7%;border:1px solid rgba(255,255,255,.22);color:#a6e0db;font-size:clamp(8px,.62cqw,11px);font-weight:800;line-height:1.35}
