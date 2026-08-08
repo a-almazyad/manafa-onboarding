@@ -341,3 +341,71 @@
 .channel-visual{position:relative;display:block;width:100%;height:100%;min-width:0;min-height:0;margin:0;overflow:hidden;background:#05060a}
 .channel-panel--investor .channel-visual{background:#07091b}
 .channel-visual img{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;object-position:center}
+
+/* v11 — organization-first narrative, deeper channel storytelling and latest CBO ecosystem. */
+.content-header:has(.slide-lede)+.strategy-meaning,
+.content-header:has(.slide-lede)+.strategy-ecosystem{margin-top:1.5%}
+
+/* Each customer relationship uses a dominant screen plus a supporting moment. */
+.channel-panel--borrower{grid-template-columns:38% 62%}
+.channel-panel--investor{grid-template-columns:62% 38%}
+.channel-copy{padding:10% 11%}
+.channel-copy>img{width:50px;height:50px}
+.channel-copy span{margin-top:9%}
+.channel-copy h2{font-size:clamp(18px,1.55cqw,28px)}
+.channel-copy p{font-size:clamp(8px,.66cqw,12px);line-height:1.45}
+.channel-steps{display:flex;align-items:center;width:100%;gap:6%;margin-top:11%;color:var(--blue)}
+.channel-panel--investor .channel-steps{color:#087e7e}
+.channel-steps b{font-size:clamp(7px,.55cqw,10px);font-weight:850}
+.channel-steps i{flex:1;height:1px;background:currentColor;opacity:.35}
+.channel-gallery{position:relative;min-width:0;min-height:0;overflow:hidden;background:radial-gradient(circle at 62% 52%,rgba(54,85,255,.2),transparent 48%),#060711}
+.channel-panel--investor .channel-gallery{background:radial-gradient(circle at 38% 52%,rgba(50,93,255,.3),transparent 48%),#08091a}
+.channel-gallery figure{position:absolute;z-index:1;right:1%;top:1%;width:60%;height:98%;margin:0;filter:drop-shadow(0 18px 24px rgba(0,0,0,.28))}
+.channel-gallery figure:nth-child(2){z-index:2;left:1%;right:auto;top:auto;bottom:0;width:45%;height:72%}
+.channel-panel--investor .channel-gallery figure:first-child{left:1%;right:auto}
+.channel-panel--investor .channel-gallery figure:nth-child(2){left:auto;right:1%}
+.channel-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
+
+/* The final chapter first explains the strategic shift before showing its structure. */
+.strategy-meaning{display:grid;grid-template-rows:56% 44%;height:62%;background:#f7f7fa}
+.strategy-shift{display:grid;grid-template-columns:1fr 12% 1fr;align-items:stretch;min-height:0;padding:2.2% 3% 1.5%}
+.strategy-shift>article{display:grid;grid-template-columns:36% 1fr;grid-template-rows:auto 1fr;gap:4% 7%;align-items:center;min-height:0;padding:3.5%;background:#fff;border:1px solid #dfe3ea}
+.strategy-shift>article>span{grid-column:1/-1;color:#7d8798;font-size:clamp(7px,.58cqw,10px);font-weight:900;letter-spacing:.1em}
+.strategy-shift article>p{margin:0;color:var(--muted);font-size:clamp(9px,.7cqw,12.5px);line-height:1.45}
+.strategy-admin{display:grid;place-items:center;align-content:center;width:136px;max-width:90%;aspect-ratio:1;justify-self:center;background:radial-gradient(circle,#243fbc,#111c55);color:#fff;border-radius:50%;text-align:center}
+.strategy-admin strong{font-size:clamp(18px,1.8cqw,32px)}
+.strategy-admin small{width:72%;margin-top:4%;color:#c8d4ff;font-size:clamp(6px,.5cqw,9px);line-height:1.2}
+.strategy-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--violet);text-align:center}
+.strategy-arrow svg{width:38%;height:auto}
+.strategy-arrow span{margin-top:12%;font-size:clamp(7px,.55cqw,10px);font-weight:900;line-height:1.25;letter-spacing:.08em}
+.target-layers{display:grid;gap:5px}
+.target-layers b{padding:8% 7%;border-left:5px solid var(--violet);background:#f0edff;font-size:clamp(8px,.67cqw,12px)}
+.target-layers b:nth-child(2){border-color:var(--teal);background:#e9f8f6}.target-layers b:nth-child(3){border-color:var(--blue);background:#edf2ff}
+.strategy-outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;padding:0 3% 2.2%;background:#dfe3ea}
+.strategy-outcomes article{display:grid;grid-template-columns:auto 1fr;gap:8%;align-items:start;padding:8%;background:#fff}
+.strategy-outcomes article>b{color:var(--violet);font-size:clamp(14px,1.3cqw,23px)}
+.strategy-outcomes strong{font-size:clamp(9px,.76cqw,14px)}
+.strategy-outcomes p{margin:6% 0 0;color:var(--muted);font-size:clamp(7px,.58cqw,10.5px);line-height:1.4}
+
+/* Latest target structure from the current CBO presentation. */
+.strategy-ecosystem{display:grid;grid-template-columns:1fr 19%;gap:1.2%;height:62%;min-width:0}
+.ecosystem-suite,.ecosystem-embedded{min-width:0;border:1px solid #cfd3db;background:#f8f8f6}
+.ecosystem-suite{display:grid;grid-template-rows:8% 15% 59% 18%;padding:0 1% 1%}
+.ecosystem-suite>header,.ecosystem-embedded>header{display:flex;align-items:center;margin:0 -1.05%;padding:0 2%;background:#ecebe8;border-bottom:1px solid #cfd3db;font-size:clamp(7px,.56cqw,10px);font-weight:900;letter-spacing:.12em}
+.ecosystem-band{display:grid;grid-template-columns:14% repeat(4,1fr);gap:1%;min-width:0;min-height:0;padding:.6% 0;border-bottom:1px solid #d7dae0}
+.ecosystem-band>label{display:flex;flex-direction:column;justify-content:center;padding:4%;color:var(--violet)}
+.ecosystem-band>label b{font-size:clamp(12px,1.15cqw,21px);line-height:1}.ecosystem-band>label strong{margin-top:4%;color:#1b1f28;font-size:clamp(6px,.5cqw,9px);letter-spacing:.06em}.ecosystem-band>label small{margin-top:5%;color:#7c8492;font-size:clamp(6px,.44cqw,8px)}
+.ecosystem-channels>span{display:grid;place-items:center;background:#171a21;color:#fff;font-size:clamp(7px,.58cqw,10.5px);font-weight:800;text-align:center}
+.ecosystem-hubs{align-items:stretch}
+.ecosystem-hub{display:flex;flex-direction:column;min-width:0;padding:0 4% 3%;background:#fff;border:1px solid #d5d8df}
+.ecosystem-hub h2{display:grid;place-items:center;min-height:36px;margin:0 -4.4% 5%;padding:3%;background:var(--hub);color:#fff;font-size:clamp(8px,.64cqw,11.5px);text-align:center}
+.ecosystem-hub span{display:flex;align-items:center;min-height:25px;margin-top:4px;padding:4% 5%;border-left:4px solid var(--hub);background:#f0efec;color:#303641;font-size:clamp(6px,.49cqw,9px);line-height:1.15}
+.ecosystem-hub--customer{--hub:#2854dc}.ecosystem-hub--lending{--hub:#82996b}.ecosystem-hub--counterparty{--hub:#a78c5f}.ecosystem-hub--financial{--hub:#e97664}
+.ecosystem-shared{border-bottom:0}
+.ecosystem-shared>span{display:grid;place-items:center;border:1px solid #b7bbc4;background:#fff;color:#343945;font-size:clamp(6px,.5cqw,9px);font-weight:750;text-align:center}
+.ecosystem-embedded{display:grid;grid-template-rows:8% 15% 1fr;gap:2%;padding:0 5% 5%}
+.ecosystem-embedded>header{margin:0 -5.5%;padding:0 8%}
+.ecosystem-embedded>strong{display:grid;place-items:center;background:#171a21;color:#fff;font-size:clamp(7px,.58cqw,10.5px);text-align:center}
+.ecosystem-embedded>article{padding:0 6% 6%;background:#fff;border:1px solid #d5d8df}
+.ecosystem-embedded h2{display:grid;place-items:center;min-height:38px;margin:0 -6.5% 8%;background:var(--violet);color:#fff;font-size:clamp(8px,.68cqw,12px)}
+.ecosystem-embedded article span{display:block;margin-top:7%;padding:7%;border-left:4px solid var(--violet);background:#f0efec;font-size:clamp(6px,.52cqw,9.5px)}
