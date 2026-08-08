@@ -160,3 +160,105 @@
 .departments .icon-bubble{width:48px;height:48px}
 .departments strong{font-size:clamp(12px,.98cqw,18px);line-height:1.15}
 .departments article span{margin-top:5%;font-size:clamp(10px,.76cqw,14px);line-height:1.25}
+
+/* narrative and geometry correction v8 */
+@font-face{font-family:Cairo;src:url('../assets/fonts/Cairo-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:Cairo;src:url('../assets/fonts/Cairo-SemiBold.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:Cairo;src:url('../assets/fonts/Cairo-Bold.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
+
+/* Agenda: centre the journey in the available canvas and restore breathing room. */
+.content--agenda .content-header{position:absolute;left:5.2%;top:9%;width:76%}
+.content--agenda .slide-lede{margin-top:2.5%;max-width:80%}
+.agenda-grid{position:absolute;left:5.2%;right:5.2%;top:33%;height:47%;margin:0;grid-template-columns:repeat(4,1fr);gap:2.5%;align-items:stretch}
+.agenda-grid article{padding:9% 7% 8%;grid-template-rows:auto auto 1fr}
+.agenda-grid article:nth-child(4){background:linear-gradient(180deg,#fff4ef 0%,rgba(255,244,239,0) 82%)}
+.agenda-grid article:nth-child(4):before{background:var(--coral)}
+.agenda-grid b{font-size:clamp(34px,3.5cqw,62px)}
+.agenda-grid h2{margin-top:9%;font-size:clamp(20px,1.82cqw,32px);line-height:1.02}
+.agenda-grid p{max-width:100%;font-size:clamp(10px,.83cqw,15px)}
+
+/* Business model: keep the connectivity diagram clear and centre the takeaway. */
+.business-model{height:63%;margin-top:1.6%!important}
+.business-model>svg{height:72%}
+.model-note{left:50%;right:auto;bottom:-2%;width:58%;transform:translateX(-50%);grid-template-columns:24% 1fr;padding:2% 3%}
+
+/* Milestones: increase visual size without touching the centre rail. */
+.milestones article>img{width:72px;height:72px}
+.milestones article>.icon-bubble{width:66px;height:66px}
+.milestones article:nth-of-type(odd)>img,.milestones article:nth-of-type(odd)>.icon-bubble{top:5%}
+.milestones article:nth-of-type(odd) h2{top:28%}
+.milestones article:nth-of-type(even)>img,.milestones article:nth-of-type(even)>.icon-bubble{top:55%}
+.milestones article:nth-of-type(even) h2{top:77%}
+
+/* Regulation and recognition assets. */
+.sama-mark:before{width:78%}
+.sama-mark img{width:62%;height:62%;mix-blend-mode:normal}
+.growth-copy{padding:7%}
+.mini-logos{height:56px;margin-top:8%;gap:8%}
+.unicorn-heading{grid-template-columns:72px 1fr}
+.unicorn-heading>img{width:72px;height:72px;padding:9px;border-radius:50%;background:#173bc8;object-fit:contain}
+.unicorn-operators{height:48px;margin-top:5%;padding-top:4%}
+.unicorn-operators img{width:29%}
+
+/* National programs: narrative first, supporting brands beneath it. */
+.programs article>div{padding:7% 8% 6%}
+.programs h2{margin:3% 0 4%}
+.programs p{line-height:1.38}
+.program-logos{order:4;height:46px;margin:7% 0 4%;padding-top:4%;border-top:1px solid #d8dee8}
+.programs strong{order:5;margin-top:auto;padding-top:3%;border-top:0}
+
+/* Leadership hierarchy: fixed rows, exact connector centres, equal executive columns. */
+.leadership{height:64%;margin-top:1.5%!important;display:grid;grid-template-rows:25% 12% 63%}
+.ceo{width:32%;height:100%;margin:0 auto;padding:1.1% 1.5%}
+.leadership-tree{width:83.34%;height:100%;margin:0 auto;border-top:0;border-bottom:2px solid #cdd4e0}
+.leadership-tree:before{bottom:0;height:100%}
+.executive-row{height:100%;gap:0;align-items:start}
+.executive-row article{padding-top:24px}
+.executive-row article:before{position:absolute;left:50%;top:0;width:2px;height:24px;margin:0;background:#cdd4e0;transform:translateX(-50%)}
+.executive-row img,.executive-row .person-placeholder{width:54%}
+
+/* Group: lower the complete composition and remove overlap with the lede. */
+.group{height:58%;margin-top:4.5%!important}
+.group-origin{top:0;width:13.5%}
+.group-line{top:31%;height:12%}
+.company{height:45%}
+.company--abyan>img{width:64%;height:58px}
+
+/* Department typography and optical icon centring. */
+.departments{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);height:64%;gap:0 2%;align-content:stretch}
+.departments article{display:grid;grid-template-columns:52px 1fr;padding:2% 3%;gap:5%;min-height:0;align-items:center}
+.departments .icon-bubble{width:46px;height:46px;display:grid;place-items:center;line-height:0}
+.departments .icon-bubble svg{display:block;width:22px;height:22px;margin:auto;transform:none}
+.departments article span{font-family:Cairo,sans-serif;font-weight:400;line-height:1.45;margin-top:2%}
+
+/* Digital Product hierarchy: one centred parent and two equal branches. */
+.product-org{height:62%;margin-top:1.8%!important;display:grid;grid-template-rows:29% 12% 59%}
+.org-head{width:34%;height:100%;margin:0 auto;padding:1.1% 1.4%}
+.org-connector{width:50%;height:100%;margin:0 auto;border:0;border-bottom:2px solid #cbd3df}
+.org-connector:before{bottom:0;height:100%}
+.org-branches{width:78%;height:100%;margin:0 auto;gap:18%;align-items:start}
+.org-branches article{height:100%;padding-top:28px;display:grid;grid-template-columns:92px 1fr;align-items:center;text-align:left}
+.org-branches article:before{top:0;bottom:auto;height:28px}
+.org-branches article>div:last-child{display:block;align-items:initial}
+.org-branches img,.org-branches .person-placeholder{width:92px}
+.org-branches h2{margin:2% 0}
+
+/* Customer channels: present web and mobile as one relationship. */
+.content-header:has(.slide-lede)+.customer-channel{margin-top:1.5%}
+.customer-channel{display:grid;grid-template-columns:34% 66%;height:63%;background:linear-gradient(135deg,#eef2ff,#fff 58%)}
+.customer-channel--investor{background:linear-gradient(135deg,#eaf9f7,#fff 58%)}
+.channel-story{display:flex;flex-direction:column;justify-content:center;padding:8% 9%}
+.channel-story>img{width:72px;height:72px;border-radius:18px;object-fit:cover;box-shadow:0 12px 30px rgba(26,49,116,.17)}
+.channel-labels{display:flex;gap:8px;margin-top:7%}
+.channel-labels span{padding:5px 10px;border:1px solid #b7c7ff;color:var(--blue);font-size:clamp(8px,.62cqw,11px);font-weight:900;letter-spacing:.1em}
+.customer-channel--investor .channel-labels span{border-color:#9edbd3;color:#087b7e}
+.channel-story h2{margin:5% 0 4%;font-size:clamp(27px,2.65cqw,47px);line-height:1}
+.channel-story p{margin:0;color:var(--muted);font-size:clamp(10px,.84cqw,15px);line-height:1.5}
+.channel-story a{display:flex;align-items:center;gap:5%;margin-top:7%;color:var(--blue);font-size:clamp(10px,.8cqw,14px);font-weight:800;text-decoration:none}
+.customer-channel--investor .channel-story a{color:#087b7e}
+
+/* Delivery: separate sequence labels from the connector rail. */
+.delivery-line{top:19%}
+.delivery>article{padding-top:0}
+.delivery>article>span{margin-top:17%;color:#43516a;font-size:clamp(12px,.9cqw,16px);letter-spacing:.08em}
+.delivery h2{margin:4% 0}
